@@ -1,0 +1,178 @@
+{
+    "Room_Name": "Room 107",
+    "Welcome_Text": "Press Screen to Begin.",
+    "Startup_Time": 30,
+    "Shutdown_Time_Display_Active": 60,
+    "Shutdown_Time_Display_Inactive": 15,
+    "Displays": [
+        {
+            "Name": "Left Projector",
+            "Type": "Projector",
+            "Screen_Enabled": 1,
+            "Warming_Time": 30,
+            "SSI_Display_Usage": {
+                "Display_Name": "Projector 1"
+            },
+            "SSI_Equipment_Status":{
+                "Severity_Message": "Error",
+                "Error_Text": "Left Projector Offline",
+                "Ok_Text": "Left Projector Ok"
+            }
+        },
+        {
+            "Name": "Right Projector",
+            "Type": "Projector",
+            "Screen_Enabled": 0,
+            "Warming_Time": 30,
+            "SSI_Display_Usage": {
+                "Display_Name": "Projector 2"
+            },
+            "SSI_Equipment_Status":{
+                "Severity_Message": "Error",
+                "Error_Text": "Right Projector Offline",
+                "Ok_Text": "Right Projector Ok"
+            }
+        }
+    ],
+    "Presentation_Inputs": [
+        {
+            "Name": "Left HDMI",
+            "Type": "HDMI",
+            "Switcher_Value": 1,
+            "SSI_Device_Usage": {
+                "Device_Type": "Generic Source",
+                "Device_Name": "HDMI 1"
+            },
+            "SSI_Equipment_Status":{
+                "Severity_Message": "2",
+                "Error_Text": "HDMI 1 Offline",
+                "Ok_Text": "HDMI Ok"
+            }
+        }
+    ],
+    "ATC": {
+        "Extension": "x1-234",
+        "Help_Number": "1-800-555-5555",
+        "Help_Button_Text": "Press to Call Help",
+        "Connected_Dial_Text": "Connected",
+        "Disconnected_Dial_Text": "Dial",
+        "Connected_Hangup_Text": "Hangup",
+        "Disconnected_Hangup_Text": "Disconnected",
+        "SSI_Device_Usage": {
+            "Device_Type": "ATC Codec",
+            "Device_Name": "ATC Codec"
+        },
+        "SSI_Equipment_Status":{
+            "Severity_Message": "Error",
+            "Error_Text": "ATC Codec Offline",
+            "Ok_Text": "ATC Codec Offline"
+        }
+    },
+    "VTC": {
+        "Extension": "sip:vlan@imsts.com",
+        "Help_Number": "sip:help@imsts.com",
+        "Help_Button_Text": "Press to Call VTC Help",
+		"Connected_Dial_Text": "Connected",
+        "Disconnected_Dial_Text": "Dial",
+        "Connected_Hangup_Text": "Hangup",
+        "Disconnected_Hangup_Text": "Disconnected",
+        "Presets": [
+            {
+                "Type": "Camera",
+                "Id": "1",
+                "Name": "Preset 1"
+            },
+            {
+                "Type": "Camera",
+                "Id": "2",
+                "Name": "Preset 2"
+            },
+            {
+                "Type": "Camera",
+                "Id": "3",
+                "Name": "Preset 3"
+            },
+            {
+                "Type": "Camera",
+                "Id": "4",
+                "Name": "Preset 4"
+            },
+            {
+                "Type": "Camera",
+                "Id": "5",
+                "Name": "Preset 5"
+            },
+            {
+                "Type": "Camera",
+                "Id": "6",
+                "Name": "Preset 6"
+            }
+        ],
+        "SSI_Device_Usage": {
+            "Device_Type": "VTC Codec",
+            "Device_Name": "VTC Codec"
+        },
+        "SSI_Equipment_Status":{
+            "Severity_Message": "Error",
+            "Error_Text": "VTC Codec Offline",
+            "Ok_Text": "VTC Codec Offline"
+        }
+    },
+    "Lighting": {
+        "Presets": [
+            {
+                "Type": "Lighting",
+                "Id": "1",
+                "Name": "Preset 1"
+            },
+            {
+                "Type": "Lighting",
+                "Id": "2",
+                "Name": "Preset 2"
+            },
+            {
+                "Type": "Lighting",
+                "Id": "3",
+                "Name": "Preset 3"
+            },
+            {
+                "Type": "Lighting",
+                "Id": "4",
+                "Name": "Preset 4"
+            },
+            {
+                "Type": "Lighting",
+                "Id": "5",
+                "Name": "Preset 5"
+            },
+            {
+                "Type": "Lighting",
+                "Id": "6",
+                "Name": "Preset 6"
+            }
+        ],
+        "SSI_Equipment_Status":{
+            "Severity_Message": "Error",
+            "Error_Text": "VTC Codec Offline",
+            "Ok_Text": "VTC Codec Offline"
+        }
+    },
+    "Power_Sequencer": [
+        {
+            "Channel_1_Name": "DSP",
+            "Channel_2_Name": "Crestron",
+            "Channel_3_Name": "Camera",
+            "Channel_4_Name": "Microphones",
+            "Channel_5_Name": "POE Injectors",
+            "Channel_6_Name": "DM Switch",
+            "Channel_7_Name": "Recorder",
+            "Channel_8_Name": "Extra"
+        ,
+        "SSI_Equipment_Status":{
+            "Severity_Message": "Error",
+            "Error_Text": "VTC Codec Offline",
+            "Ok_Text": "VTC Codec Offline"
+        }
+    }
+    ]
+ }

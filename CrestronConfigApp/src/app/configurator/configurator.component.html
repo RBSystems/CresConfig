@@ -1,0 +1,534 @@
+<div class="card config">
+  <div class="card-header">
+  <h3>Crestron Configuration</h3>
+  <h3 *ngIf="!response">Can Not pull Configuration File</h3>
+  </div>
+  <form [formGroup]="configForm" class="form-group" (ngSubmit)="onSubmit()" (keydown.enter)="$event.preventDefault()">
+    <button type="submit" class="btn btn-success">Save</button>
+    <div class="card">
+      <div class="card-header">
+        <h3>Global Settings</h3>
+        <button type="button" class="btn btn-display" (click)="globalSettingsCollapsed = !globalSettingsCollapsed">{{ globalSettingsCollapsed ? 'Expand' : 'Close' }}</button>
+      </div>
+      <div class="card-body configForm" *ngIf="response" [ngbCollapse]="globalSettingsCollapsed">
+            <div class="row">
+              <div class="form-group column">
+                <label class="center-block">Room Name:
+                  <input class="form-control" formControlName="Room_Name">
+                </label>
+              </div>
+              <div class="form-group column">
+                <label class="center-block">Welcome Text:
+                  <input class="form-control" formControlName="Welcome_Text">
+                </label>
+              </div>
+              <div class="form-group column">
+                <label class="center-block">Startup Time:
+                  <input type="number" class="form-control" formControlName="Startup_Time">
+                </label>
+              </div>
+              <div class="form-group column">
+                <label class="center-block">Shutdown Time if Display Active:
+                  <input type="number" class="form-control" formControlName="Shutdown_Time_Display_Active">
+                </label>
+              </div>
+              <div class="form-group column">
+                  <label class="center-block">Shutdown Time if Display Inactive:
+                    <input type="number" class="form-control" formControlName="Shutdown_Time_Display_Inactive">
+                  </label>
+              </div>
+            </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <h3>Displays</h3>
+        <button type="button" class="btn btn-display" (click)="displaySettingsCollapsed = !displaySettingsCollapsed">{{ displaySettingsCollapsed ? 'Expand' : 'Close' }}</button>
+      </div>
+      <div class="card-body configForm" *ngIf="isCollapsed.length > 0" [ngbCollapse]="displaySettingsCollapsed">
+            <div formArrayName="displays">
+              <div class="row">
+                <div *ngFor="let display of displays.controls; let i=index" [formGroupName]="i">
+                  <div class="column">
+                    <button type="button" class="btn btn-info btn-display" (click)="collapseAllDisplays();isCollapsed[i] = false">Display {{ i + 1 }}</button>
+                  </div>
+                </div>
+                  <div class="column">
+                    <button *ngIf="displays.controls.length < MAXDISPLAYS" type="button" class="btn btn-info btn-display" (click)="createDisplay()">New Display</button>
+                  </div> 
+              </div>
+                  <div *ngFor="let display of displays.controls; let i=index" [formGroupName]="i">
+                      <div [attr.id]="'#displayField' + i" [ngbCollapse]="isCollapsed[i]"> 
+                        <div class="row"><h5>Display {{ i + 1 }}</h5></div>
+                        <div class="row">
+                          <div class="form-group column">
+                            <label class="center-block">Display Name:
+                              <input class="form-control" formControlName="Name">
+                            </label>
+                          </div>
+                          <div class="form-group column">
+                              <label class="center-block">Display Type:
+                                <input class="form-control" formControlName="Type">
+                            </label>
+                          </div>
+                          <div class="form-group column">
+                              <label class="center-block">Screen Enabled:
+                                <input class="form-control" formControlName="Screen_Enabled">
+                            </label>
+                          </div>
+                          <div class="form-group column">
+                              <label class="center-block">Warming Time:
+                                <input class="form-control" formControlName="Warming_Time">
+                            </label>
+                          </div>
+                        </div>
+                        <div class="row"><h5>SSI Display Usage</h5></div>
+                          <div formGroupName="SSI_Display_Usage" class="row">
+                            <div class="form-group column">
+                                  <label class="center-block">SSI Display Name:
+                                    <input class="form-control" formControlName="Display_Name">
+                                </label>
+                            </div>
+                          </div>
+                          <div class="row"><h5>SSI Equipment Status</h5></div>
+                          <div formGroupName="SSI_Equipment_Status" class="row">
+                              <div class="form-group column">
+                                    <label class="center-block">SSI Ok Text:
+                                      <input class="form-control" formControlName="Ok_Text">
+                                  </label>
+                              </div>
+                              <div class="form-group column">
+                                  <label class="center-block gridBottom">SSI Error Text:
+                                    <input class="form-control gridBottom" formControlName="Error_Text">
+                                </label>
+                              </div>
+                              <div class="form-group column gridBottom">
+                                  <label class="center-block gridBottom">SSI Severity Message:
+                                    <input class="form-control" formControlName="Severity_Message">
+                                </label>
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+            </div>
+      </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+          <h3>Presentation Inputs</h3>
+          <button type="button" class="btn btn-display" (click)="presentationSettingsCollapsed = !presentationSettingsCollapsed">{{ presentationSettingsCollapsed ? 'Expand' : 'Close' }}</button>
+        </div>
+        <div class="card-body configForm" *ngIf="presentationIsCollapsed.length > 0" [ngbCollapse]="presentationSettingsCollapsed">
+            <div formArrayName="Presentation_Inputs">
+              <div class="row">
+                <div *ngFor="let Presentation_Input of Presentation_Inputs.controls; let i=index" [formGroupName]="i" >    
+                  <div class="column">        
+                    <button type="button" class="btn btn-info btn-display" (click)="collapseAllPresentation();presentationIsCollapsed[i] = false">Presentation Input {{ i + 1}}</button>
+                  </div>
+                </div>
+                <div class="column">
+                    <button *ngIf="Presentation_Inputs.controls.length < MAXINPUTS" type="button" class="btn btn-info btn-display" (click)="createPresentationInput()">New Presentation Input</button>
+                  </div> 
+              </div>
+                <div *ngFor="let Presentation_Input of Presentation_Inputs.controls; let i=index" [formGroupName]="i" >
+                    <div [attr.id]="'#presentationField' + i" [ngbCollapse]="presentationIsCollapsed[i]">
+                      <div class="row"><h5>Presentation Input {{ i + 1 }}</h5></div>
+                      <div class="row">
+                        <div class="form-group column">
+                          <label class="center-block">Presentation Name:
+                            <input class="form-control" formControlName="Name">
+                          </label>
+                        </div>
+                        <div class="form-group column">
+                            <label class="center-block">Presentation Type:
+                              <input class="form-control" formControlName="Type">
+                          </label>
+                        </div>
+                        <div class="form-group column">
+                            <label class="center-block">Switcher Value:
+                              <input class="form-control" formControlName="Switcher_Value">
+                          </label>
+                        </div>
+                      </div>
+                      <div class="row"><h5>SSI Device Usage</h5></div>
+                      <div formGroupName="SSI_Device_Usage" class="row">
+                            <div class="form-group column">
+                                  <label class="center-block">SSI Device Name:
+                                    <input class="form-control" formControlName="Device_Name">
+                                </label>
+                            </div>
+                            <div class="form-group column">
+                                <label class="center-block">SSI Device Type:
+                                  <input class="form-control" formControlName="Device_Type">
+                              </label>
+                            </div>
+                      </div>
+                      <div class="row"><h5>SSI Equipment Status</h5></div>
+                      <div formGroupName="SSI_Equipment_Status" class="row">
+                            <div class="form-group column">
+                                  <label class="center-block">SSI Ok Text:
+                                    <input class="form-control" formControlName="Ok_Text">
+                                </label>
+                            </div>
+                            <div class="form-group column">
+                                <label class="center-block">SSI Error Text:
+                                  <input class="form-control" formControlName="Error_Text">
+                              </label>
+                            </div>
+                            <div class="form-group column">
+                                <label class="center-block">SSI Severity Message:
+                                  <input class="form-control" formControlName="Severity_Message">
+                              </label>
+                            </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+          <h3>ATC</h3>
+          <button type="button" class="btn btn-display" (click)="atcSettingsCollapsed = !atcSettingsCollapsed">{{ atcSettingsCollapsed ? 'Expand' : 'Close' }}</button>
+        </div>
+        <div class="card-body configForm" *ngIf="response" [ngbCollapse]="atcSettingsCollapsed">
+                    <div formGroupName="ATC">
+                      <div class="row">
+                        <div class="form-group column">
+                          <label class="center-block">Extension:
+                            <input class="form-control" formControlName="Extension">
+                          </label>
+                        </div>
+                        <div class="form-group column">
+                            <label class="center-block">Help Number:
+                              <input class="form-control" formControlName="Help_Number">
+                          </label>
+                        </div>
+                        <div class="form-group column">
+                            <label class="center-block">Help Button Text:
+                              <input class="form-control" formControlName="Help_Button_Text">
+                          </label>
+                        </div>
+                        <div class="form-group column">
+                            <label class="center-block">Connected Dial Text:
+                              <input class="form-control" formControlName="Connected_Dial_Text">
+                          </label>
+                        </div>
+                        <div class="form-group column">
+                            <label class="center-block">Disconnected Dial Text:
+                              <input class="form-control" formControlName="Disconnected_Dial_Text">
+                          </label>
+                        </div>
+                        <div class="form-group column">
+                            <label class="center-block">Connected Hangup Text:
+                              <input class="form-control" formControlName="Connected_Hangup_Text">
+                          </label>
+                        </div>
+                        <div class="form-group column">
+                            <label class="center-block">Disconnected Hangup Text:
+                              <input class="form-control" formControlName="Disconnected_Hangup_Text">
+                          </label>
+                        </div>
+                      </div>
+                      <div class="row"><h5>SSI Device Usage</h5></div>
+                      <div formGroupName="SSI_Device_Usage" class="row">
+                            <div class="form-group column">
+                                  <label class="center-block">SSI Device Name:
+                                    <input class="form-control" formControlName="Device_Name">
+                                </label>
+                            </div>
+                            <div class="form-group column">
+                                <label class="center-block">SSI Device Type:
+                                  <input class="form-control" formControlName="Device_Type">
+                              </label>
+                            </div>
+                      </div>
+                      <div class="row"><h5>SSI Equipment Status</h5></div>
+                      <div formGroupName="SSI_Equipment_Status" class="row">
+                            <div class="form-group column">
+                                  <label class="center-block">SSI Ok Text:
+                                    <input class="form-control" formControlName="Ok_Text">
+                                </label>
+                            </div>
+                            <div class="form-group column">
+                                <label class="center-block">SSI Error Text:
+                                  <input class="form-control" formControlName="Error_Text">
+                              </label>
+                            </div>
+                            <div class="form-group column">
+                                <label class="center-block">SSI Severity Message:
+                                  <input class="form-control" formControlName="Severity_Message">
+                              </label>
+                            </div>
+                      </div>
+                    </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+          <h3>VTC</h3>
+          <button type="button" class="btn btn-display" (click)="vtcSettingsCollapsed = !vtcSettingsCollapsed">{{ vtcSettingsCollapsed ? 'Expand' : 'Close' }}</button>
+        </div>
+        <div class="card-body configForm" *ngIf="response" [ngbCollapse]="vtcSettingsCollapsed">
+                    <div formGroupName="VTC">
+                      <div class="row">
+                        <div class="form-group column">
+                          <label class="center-block">Extension:
+                            <input class="form-control" formControlName="Extension">
+                          </label>
+                        </div>
+                        <div class="form-group column">
+                            <label class="center-block">Help Number:
+                              <input class="form-control" formControlName="Help_Number">
+                          </label>
+                        </div>
+                        <div class="form-group column">
+                            <label class="center-block">Help Button Text:
+                              <input class="form-control" formControlName="Help_Button_Text">
+                          </label>
+                        </div>
+                        <div class="form-group column">
+                            <label class="center-block">Connected Dial Text:
+                              <input class="form-control" formControlName="Connected_Dial_Text">
+                          </label>
+                        </div>
+                        <div class="form-group column">
+                            <label class="center-block">Disconnected Dial Text:
+                              <input class="form-control" formControlName="Disconnected_Dial_Text">
+                          </label>
+                        </div>
+                        <div class="form-group column">
+                            <label class="center-block">Connected Hangup Text:
+                              <input class="form-control" formControlName="Connected_Hangup_Text">
+                          </label>
+                        </div>
+                        <div class="form-group column">
+                            <label class="center-block">Disconnected Hangup Text:
+                              <input class="form-control" formControlName="Disconnected_Hangup_Text">
+                          </label>
+                        </div>
+                      </div>
+                      <div class="row"><h5>Presets</h5></div>
+                      <div class="card-body configForm" *ngIf="VTCPresetsIsCollapsed.length > 0">
+                          <div formArrayName="Presets">
+                            <div class="row">
+                              <div *ngFor="let preset of VTCPresets.controls; let i=index" [formGroupName]="i">
+                                <div clas="column">
+                                  <button type="button" class="btn btn-info btn-display" (click)="collapseAllVTCPresets();VTCPresetsIsCollapsed[i] = false">Preset {{ i + 1 }}</button>
+                                </div>
+                              </div>
+                                <div class="column">
+                                  <button *ngIf="VTCPresets.controls.length < MAXPRESTS" type="button" class="btn btn-info btn-display" (click)="createPreset('VTCPresets')">New Preset</button>
+                                </div> 
+                            </div>
+                            <div *ngFor="let preset of VTCPresets.controls; let i=index" [formGroupName]="i">
+                                <div [attr.id]="'#displayField' + i" [ngbCollapse]="VTCPresetsIsCollapsed[i]"> 
+                                  <div class="row"><h5>Preset {{ i + 1 }}</h5></div>
+                                  <div class="row">
+                                    <div class="form-group column">
+                                      <label class="center-block">Preset Name:
+                                        <input class="form-control" formControlName="Name">
+                                      </label>
+                                    </div>
+                                    <div class="form-group column">
+                                        <label class="center-block">Preset Id:
+                                          <input class="form-control" formControlName="Id">
+                                      </label>
+                                    </div>
+                                    <div class="form-group column">
+                                        <label class="center-block">Preset Type:
+                                          <input class="form-control" formControlName="Type">
+                                      </label>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="row"><h5>SSI Device Usage</h5></div>
+                      <div formGroupName="SSI_Device_Usage" class="row">
+                            <div class="form-group column">
+                                  <label class="center-block">SSI Device Name:
+                                    <input class="form-control" formControlName="Device_Name">
+                                </label>
+                            </div>
+                            <div class="form-group column">
+                                <label class="center-block">SSI Device Type:
+                                  <input class="form-control" formControlName="Device_Type">
+                              </label>
+                            </div>
+                      </div>
+                      <div class="row"><h5>SSI Equipment Status</h5></div>
+                      <div formGroupName="SSI_Equipment_Status" class="row">
+                            <div class="form-group column">
+                                  <label class="center-block">SSI Ok Text:
+                                    <input class="form-control" formControlName="Ok_Text">
+                                </label>
+                            </div>
+                            <div class="form-group column">
+                                <label class="center-block">SSI Error Text:
+                                  <input class="form-control" formControlName="Error_Text">
+                              </label>
+                            </div>
+                            <div class="form-group column">
+                                <label class="center-block">SSI Severity Message:
+                                  <input class="form-control" formControlName="Severity_Message">
+                              </label>
+                            </div>
+                      </div>
+                    </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+          <h3>Lighting</h3>
+          <button type="button" class="btn btn-display" (click)="lightingSettingsCollapsed = !lightingSettingsCollapsed">{{ lightingSettingsCollapsed ? 'Expand' : 'Close' }}</button>
+        </div>
+        <div class="card-body configForm" *ngIf="response" [ngbCollapse]="lightingSettingsCollapsed">
+                    <div formGroupName="Lighting">
+                      <div class="row"><h5>Presets</h5></div>
+                      <div class="card-body configForm" *ngIf="LightingPresetsIsCollapsed.length > 0">
+                          <div formArrayName="Presets">
+                            <div class="row">
+                              <div *ngFor="let preset of LightingPresets.controls; let i=index" [formGroupName]="i">
+                                <div clas="column">
+                                  <button type="button" class="btn btn-info btn-display" (click)="collapseAllLightingPresets();LightingPresetsIsCollapsed[i] = false">Preset {{ i + 1 }}</button>
+                                </div>
+                              </div>
+                              <div class="column">
+                                  <button *ngIf="LightingPresets.controls.length < MAXPRESETS" type="button" class="btn btn-info btn-display" (click)="createPreset('LightingPresets')">New Preset</button>
+                              </div> 
+                            </div>
+                            <div *ngFor="let preset of LightingPresets.controls; let i=index" [formGroupName]="i">
+                                <div [attr.id]="'#displayField' + i" [ngbCollapse]="LightingPresetsIsCollapsed[i]"> 
+                                  <div class="row"><h5>Preset {{ i + 1 }}</h5></div>
+                                  <div class="row">
+                                    <div class="form-group column">
+                                      <label class="center-block">Preset Name:
+                                        <input class="form-control" formControlName="Name">
+                                      </label>
+                                    </div>
+                                    <div class="form-group column">
+                                        <label class="center-block">Preset Id:
+                                          <input class="form-control" formControlName="Id">
+                                      </label>
+                                    </div>
+                                    <div class="form-group column">
+                                        <label class="center-block">Preset Type:
+                                          <input class="form-control" formControlName="Type">
+                                      </label>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="row"><h5>SSI Equipment Status</h5></div>
+                      <div formGroupName="SSI_Equipment_Status" class="row">
+                            <div class="form-group column">
+                                  <label class="center-block">SSI Ok Text:
+                                    <input class="form-control" formControlName="Ok_Text">
+                                </label>
+                            </div>
+                            <div class="form-group column">
+                                <label class="center-block">SSI Error Text:
+                                  <input class="form-control" formControlName="Error_Text">
+                              </label>
+                            </div>
+                            <div class="form-group column">
+                                <label class="center-block">SSI Severity Message:
+                                  <input class="form-control" formControlName="Severity_Message">
+                              </label>
+                            </div>
+                      </div>
+                    </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+          <h3>Sequencers</h3>
+          <button type="button" class="btn btn-display" (click)="sequencerSettingsCollapsed = !sequencerSettingsCollapsed">{{ sequencerSettingsCollapsed ? 'Expand' : 'Close' }}</button>
+        </div>
+        <div class="card-body configForm" *ngIf="SequencersIsCollapsed.length > 0" [ngbCollapse]="sequencerSettingsCollapsed">
+              <div formArrayName="Power_Sequencer">
+                <div class="row">
+                  <div *ngFor="let sequencer of Power_Sequencer.controls; let i=index" [formGroupName]="i">
+                    <div clas="column">
+                      <button type="button" class="btn btn-info btn-display" (click)="collapseAllSequencers();SequencersIsCollapsed[i] = false">Sequencer {{ i + 1 }}</button>
+                    </div>
+                  </div>
+                  <div class="column">
+                      <button *ngIf="Power_Sequencer.controls.length < MAXSEQUENCERS" type="button" class="btn btn-info btn-display" (click)="createSequencer()">New Sequencer</button>
+                    </div> 
+                </div>
+                    <div *ngFor="let sequencer of Power_Sequencer.controls; let i=index" [formGroupName]="i">
+                        <div [attr.id]="'#displayField' + i" [ngbCollapse]="SequencersIsCollapsed[i]"> 
+                          <div class="row"><h5>Sequencer {{ i + 1 }}</h5></div>
+                          <div class="row">
+                            <div class="form-group column">
+                              <label class="center-block">Channel 1 Name:
+                                <input class="form-control" formControlName="Channel_1_Name">
+                              </label>
+                            </div>
+                            <div class="form-group column">
+                              <label class="center-block">Channel 2 Name:
+                                <input class="form-control" formControlName="Channel_2_Name">
+                              </label>
+                            </div>
+                            <div class="form-group column">
+                                <label class="center-block">Channel 3 Name:
+                                  <input class="form-control" formControlName="Channel_3_Name">
+                                </label>
+                            </div>
+                            <div class="form-group column">
+                                <label class="center-block">Channel 4 Name:
+                                  <input class="form-control" formControlName="Channel_4_Name">
+                                </label>
+                            </div>
+                            <div class="form-group column">
+                                <label class="center-block">Channel 5 Name:
+                                  <input class="form-control" formControlName="Channel_5_Name">
+                                </label>
+                            </div>
+                            <div class="form-group column">
+                                <label class="center-block">Channel 6 Name:
+                                  <input class="form-control" formControlName="Channel_6_Name">
+                                </label>
+                            </div>
+                            <div class="form-group column">
+                                <label class="center-block">Channel 7 Name:
+                                  <input class="form-control" formControlName="Channel_7_Name">
+                                </label>
+                            </div>
+                            <div class="form-group column">
+                                <label class="center-block">Channel 8 Name:
+                                  <input class="form-control" formControlName="Channel_8_Name">
+                                </label>
+                            </div>
+                          </div>
+                          <div class="row"><h5>SSI Equipmnet Status</h5></div>
+                          <div formGroupName="SSI_Equipment_Status" class="row">
+                                <div class="form-group column">
+                                      <label class="center-block">SSI Ok Text:
+                                        <input class="form-control" formControlName="Ok_Text">
+                                    </label>
+                                </div>
+                                <div class="form-group column">
+                                    <label class="center-block gridBottom">SSI Error Text:
+                                      <input class="form-control gridBottom" formControlName="Error_Text">
+                                  </label>
+                                </div>
+                                <div class="form-group column gridBottom">
+                                    <label class="center-block gridBottom">SSI Severity Message:
+                                      <input class="form-control" formControlName="Severity_Message">
+                                  </label>
+                              </div>
+                          </div>
+                        </div>
+                    </div>
+              </div>
+        </div>
+      </div>
+  </form>
+</div>
+

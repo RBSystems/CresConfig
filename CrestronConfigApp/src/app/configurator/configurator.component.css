@@ -1,0 +1,15 @@
+div.config {
+    padding: 20px;
+}
+
+btn.btn-display {
+    padding: 2px;
+}
+
+.form-group {
+    padding: 10px;
+}
+
+.gridBottom {
+    vertical-align: bottom;
+}

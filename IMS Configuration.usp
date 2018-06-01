@@ -1,0 +1,522 @@
+/*******************************************************************************************
+  SIMPL+ Module Information
+  (Fill in comments below)
+*******************************************************************************************/
+/*
+Dealer Name:
+System Name:
+System Number:
+Programmer:
+Comments:
+*/
+
+/*******************************************************************************************
+  Compiler Directives
+  (Uncomment and declare compiler directives as needed)
+*******************************************************************************************/
+// #ENABLE_DYNAMIC
+// #SYMBOL_NAME ""
+// #HINT ""
+// #DEFINE_CONSTANT
+// #CATEGORY "" 
+// #PRINT_TO_TRACE
+// #DIGITAL_EXPAND 
+// #ANALOG_SERIAL_EXPAND 
+// #OUTPUT_SHIFT 
+// #HELP_PDF_FILE ""
+#DEFAULT_VOLATILE
+#ENABLE_STACK_CHECKING
+#ENABLE_TRACE
+// #ENCODING_ASCII
+// #ENCODING_UTF16
+// #ENCODING_INHERIT_FROM_PARENT
+// #ENCODING_INHERIT_FROM_PROGRAM
+/*
+#HELP_BEGIN
+   (add additional lines of help lines)
+#HELP_END
+*/
+
+/*******************************************************************************************
+  Include Libraries
+  (Uncomment and include additional libraries as needed)
+*******************************************************************************************/
+// #CRESTRON_LIBRARY ""
+// #USER_LIBRARY ""
+#USER_SIMPLSHARP_LIBRARY "IMS Configuration JSON" 
+/*******************************************************************************************
+  DIGITAL, ANALOG and SERIAL INPUTS and OUTPUTS
+  (Uncomment and declare inputs and outputs as needed)
+*******************************************************************************************/
+DIGITAL_INPUT Pull_Config;
+
+DIGITAL_OUTPUT _SKIP_;
+ANALOG_OUTPUT 	Startup_Time, Shutdown_Time_Active, Shutdown_Time_Inactive;
+STRING_OUTPUT 	Room_Name, Welcome_Text;
+//Display 1
+STRING_OUTPUT 	_SKIP_, Display1_Name, Display1_Type;
+DIGITAL_OUTPUT 	Display1_Screen_Enabled;
+ANALOG_OUTPUT 	Display1_Warming_Time;
+STRING_OUTPUT	Display1_SSI_Usage_Name, Display1_SSI_Severity_Message, Display1_SSI_Error_Text,
+				Display1_SSI_OK_Text;
+
+//Display 2
+STRING_OUTPUT 	_SKIP_, Display2_Name, Display2_Type;
+DIGITAL_OUTPUT 	Display2_Screen_Enabled;
+ANALOG_OUTPUT 	Display2_Warming_Time;
+STRING_OUTPUT	Display2_SSI_Usage_Name, Display2_SSI_Severity_Message, Display2_SSI_Error_Text,
+				Display2_SSI_OK_Text;
+//Presentation Input 1
+STRING_OUTPUT	_SKIP_, Presentation1_Name, Presentation1_Type;
+ANALOG_OUTPUT	Presentation1_Switcher_Value;
+STRING_OUTPUT	Presentation1_SSI_Device_Usage_Type, Presentation1_SSI_Device_Usage_Name,
+				Presentation1_SSI_Severity_Message, Presentation1_SSI_Error_Text,
+				Presentation1_SSI_Ok_Text;
+//Presentation Input 2
+STRING_OUTPUT	_SKIP_, Presentation2_Name, Presentation2_Type;
+ANALOG_OUTPUT	Presentation2_Switcher_Value;
+STRING_OUTPUT	Presentation2_SSI_Device_Usage_Type, Presentation2_SSI_Device_Usage_Name,
+				Presentation2_SSI_Severity_Message, Presentation2_SSI_Error_Text,
+				Presentation2_SSI_Ok_Text;
+//Presentation Input 3
+STRING_OUTPUT	_SKIP_, Presentation3_Name, Presentation3_Type;
+ANALOG_OUTPUT	Presentation3_Switcher_Value;
+STRING_OUTPUT	Presentation3_SSI_Device_Usage_Type, Presentation3_SSI_Device_Usage_Name,
+				Presentation3_SSI_Severity_Message, Presentation3_SSI_Error_Text,
+				Presentation3_SSI_Ok_Text;
+//Presentation Input 4
+STRING_OUTPUT	_SKIP_, Presentation4_Name, Presentation4_Type;
+ANALOG_OUTPUT	Presentation4_Switcher_Value;
+STRING_OUTPUT	Presentation4_SSI_Device_Usage_Type, Presentation4_SSI_Device_Usage_Name,
+				Presentation4_SSI_Severity_Message, Presentation4_SSI_Error_Text,
+				Presentation4_SSI_Ok_Text;
+//Presentation Input 5
+STRING_OUTPUT	_SKIP_, Presentation5_Name, Presentation5_Type;
+ANALOG_OUTPUT	Presentation5_Switcher_Value;
+STRING_OUTPUT	Presentation5_SSI_Device_Usage_Type, Presentation5_SSI_Device_Usage_Name,
+				Presentation5_SSI_Severity_Message, Presentation5_SSI_Error_Text,
+				Presentation5_SSI_Ok_Text;
+//Presentation Input 6
+STRING_OUTPUT	_SKIP_, Presentation6_Name, Presentation6_Type;
+ANALOG_OUTPUT	Presentation6_Switcher_Value;
+STRING_OUTPUT	Presentation6_SSI_Device_Usage_Type, Presentation6_SSI_Device_Usage_Name,
+				Presentation6_SSI_Severity_Message, Presentation6_SSI_Error_Text,
+				Presentation6_SSI_Ok_Text;
+//ATC
+STRING_OUTPUT	_SKIP_, ATC_Extension, ATC_Help_Number, ATC_Help_Btn_Text, ATC_Connected_Dial_Text,
+				ATC_Disconnected_Dial_Text, ATC_Connected_Hangup_Text,
+				ATC_Disconnected_Hangup_Text, ATC_SSI_Device_Usage_Type,
+				ATC_SSI_Device_Usage_Name, ATC_SSI_Severity_Message, ATC_SSI_Error_Text,
+				ATC_SSI_Ok_Text;
+//VTC
+STRING_OUTPUT	_SKIP_, VTC_Extension, VTC_Help_Number, VTC_Help_Btn_Text, VTC_Connected_Dial_Text,
+				VTC_Disconnected_Dial_Text, VTC_Connected_Hangup_Text,
+				VTC_Disconnected_Hangup_Text, VTC_Cam_Preset1_Id, VTC_Cam_Preset1_Name,
+				VTC_Cam_Preset2_Id,
+				VTC_Cam_Preset2_Name, VTC_Cam_Preset3_Id, VTC_Cam_Preset3_Name,
+                VTC_Cam_Preset4_Id, VTC_Cam_Preset4_Name, VTC_Cam_Preset5_Id,
+				VTC_Cam_Preset5_Name, VTC_Cam_Preset6_Id, VTC_Cam_Preset6_Name,                                                           	
+				VTC_SSI_Device_Usage_Type,VTC_SSI_Device_Usage_Name, VTC_SSI_Severity_Message,
+				VTC_SSI_Error_Text, VTC_SSI_Ok_Text;
+//Lighting
+STRING_OUTPUT	_SKIP_, Lighting_Preset1_ID, Lighting_Preset1_Name, Lighting_Preset2_ID,
+				Lighting_Preset2_Name, Lighting_Preset3_ID, Lighting_Preset3_Name,
+				Lighting_Preset4_ID, Lighting_Preset4_Name, Lighting_Preset5_ID,
+				Lighting_Preset5_Name, Lighting_Preset6_ID, Lighting_Preset6_Name,
+				Lighting_SSI_Severity_Message, Lighting_SSI_Error_Text, Lighting_SSI_Ok_Text;
+//Power Sequencer 1
+STRING_OUTPUT	_SKIP_, Sequencer1_Ch1_Name, Sequencer1_Ch2_Name,
+				Sequencer1_Ch3_Name, Sequencer1_Ch4_Name, Sequencer1_Ch5_Name,
+				Sequencer1_Ch6_Name, Sequencer1_Ch7_Name, Sequencer1_Ch8_Name,
+				Sequencer1_SSI_Severity_Message, Sequencer1_SSI_Error_Text, Sequencer1_SSI_Ok_Text;
+//Power Sequencer 2
+STRING_OUTPUT	_SKIP_, Sequencer2_Ch1_Name, Sequencer2_Ch2_Name,
+				Sequencer2_Ch3_Name, Sequencer2_Ch4_Name, Sequencer2_Ch5_Name,
+				Sequencer2_Ch6_Name, Sequencer2_Ch7_Name, Sequencer2_Ch8_Name,
+				Sequencer2_SSI_Severity_Message, Sequencer2_SSI_Error_Text, Sequencer2_SSI_Ok_Text;
+
+
+
+// BUFFER_INPUT 
+
+/*******************************************************************************************
+  SOCKETS
+  (Uncomment and define socket definitions as needed)
+*******************************************************************************************/
+// TCP_CLIENT
+// TCP_SERVER
+// UDP_SOCKET
+
+/*******************************************************************************************
+  Parameters
+  (Uncomment and declare parameters as needed)
+*******************************************************************************************/
+// INTEGER_PARAMETER
+// SIGNED_INTEGER_PARAMETER
+// LONG_INTEGER_PARAMETER
+// SIGNED_LONG_INTEGER_PARAMETER
+STRING_PARAMETER PATH$[32];
+
+/*******************************************************************************************
+  Parameter Properties
+  (Uncomment and declare parameter properties as needed)
+*******************************************************************************************/
+/*
+#BEGIN_PARAMETER_PROPERTIES parameter_variable, parameter_variable, ...
+   // propValidUnits = // unitString or unitDecimal|unitHex|unitPercent|unitCharacter|unitTime|unitTicks;
+   // propDefaultUnit = // unitString, unitDecimal, unitHex, unitPercent, unitCharacter, unitTime or unitTicks;
+   // propBounds = lower_bound , upper_bound;
+   // propDefaultValue = ;  // or, propDefaultValue = "";
+   // propList = // { "value" , "label" } , { "value" , "label" } , ... ;
+   // propShortDescription = "status_bar_hint_text";
+   // #BEGIN_PROP_FULL_DESCRIPTION  line_1...  line_2...  line_n  #END_PROP_FULL_DESCRIPTION
+   // #BEGIN_PROP_NOTES line_1...  line_2...  line_n  #END_PROP_NOTES
+#END_PARAMETER_PROPERTIES
+*/
+
+/*******************************************************************************************
+  Structure Definitions
+  (Uncomment and define structure definitions as needed)
+  Note:  Be sure to initialize all declared STRING variables as needed
+         For example, in Function Main: struct.myString = "";
+*******************************************************************************************/
+/*
+STRUCTURE MyStruct1
+{
+};
+
+MyStruct1 struct;
+*/
+
+/*******************************************************************************************
+  Global Variables
+  (Uncomment and declare global variables as needed)
+  Note:  Be sure to initialize all declared STRING variables as needed
+         For example, in Function Main: myString = "";
+*******************************************************************************************/
+// INTEGER
+// LONG_INTEGER
+// SIGNED_INTEGER
+// SIGNED_LONG_INTEGER
+//STRING
+Configuration config;
+RESTfulApi api;
+/*******************************************************************************************
+  Functions
+  (Add any additional functions here)
+  Note:  Functions must be physically placed before the location in
+         the code that calls them.
+*******************************************************************************************/
+/*
+Function MyFunction1()
+{
+    // TODO:  Add local variable declarations here
+
+    // TODO:  Add code here
+}
+*/
+
+/*
+Integer_Function MyIntFunction1()
+{
+    // TODO:  Add local variable declarations here
+
+    // TODO:  Add code here
+
+    Return (0);
+}
+*/
+
+/*
+String_Function MyStrFunction1()
+{
+    // TODO:  Add local variable declarations here
+
+    // TODO:  Add code here
+
+    Return ("");
+}
+*/
+
+/*******************************************************************************************
+  Event Handlers
+  (Uncomment and declare additional event handlers as needed)
+*******************************************************************************************/
+
+PUSH Pull_Config
+{
+    config.Reader();
+    //Root
+	Room_Name = config.Obj.Room_Name;
+	Welcome_Text = config.Obj.Welcome_Text;
+	Startup_Time = config.Obj.Startup_Time;
+	Shutdown_Time_Active = config.Obj.Shutdown_Time_Display_Active;
+	Shutdown_Time_Inactive = config.Obj.Shutdown_Time_Display_Inactive;
+
+	//Display 1
+	config.Obj.DisplaysToArray();
+	try{
+	Display1_Name = config.Obj.DisplayArray[0].Name;
+	Display1_Type = config.Obj.DisplayArray[0].Type;
+	Display1_Screen_Enabled = config.Obj.DisplayArray[0].Screen_Enabled;
+	Display1_Warming_Time = config.Obj.DisplayArray[0].Warming_Time;
+	Display1_SSI_Usage_Name = config.Obj.DisplayArray[0].SSI_Display_Usage.Display_Name;
+	Display1_SSI_Severity_Message = config.Obj.DisplayArray[0].SSI_Equipment_Status.Severity_Message;
+	Display1_SSI_Error_Text = config.Obj.DisplayArray[0].SSI_Equipment_Status.Error_Text;
+	Display1_SSI_OK_Text = config.Obj.DisplayArray[0].SSI_Equipment_Status.Ok_Text;
+    }catch{};
+
+	//Display 2
+	try{
+	Display2_Name = config.Obj.DisplayArray[1].Name;
+	Display2_Type = config.Obj.DisplayArray[1].Type;
+	Display2_Screen_Enabled = config.Obj.DisplayArray[1].Screen_Enabled;
+	Display2_Warming_Time = config.Obj.DisplayArray[1].Warming_Time;
+	Display2_SSI_Usage_Name = config.Obj.DisplayArray[1].SSI_Display_Usage.Display_Name;
+	Display2_SSI_Severity_Message = config.Obj.DisplayArray[1].SSI_Equipment_Status.Severity_Message;
+	Display2_SSI_Error_Text = config.Obj.DisplayArray[1].SSI_Equipment_Status.Error_Text;
+	Display2_SSI_OK_Text = config.Obj.DisplayArray[1].SSI_Equipment_Status.Ok_Text;
+    }catch{};
+	
+	//Presentation Input 1
+	try{
+	config.Obj.PresentationToArray();
+	Presentation1_Name = config.Obj.PresentationInputArray[0].Name;
+	Presentation1_Type = config.Obj.PresentationInputArray[0].Type;
+	Presentation1_Switcher_Value = config.Obj.PresentationInputArray[0].Switcher_Value;
+	Presentation1_SSI_Device_Usage_Type = config.Obj.PresentationInputArray[0].SSI_Device_Usage.Device_Type;
+	Presentation1_SSI_Device_Usage_Name = config.Obj.PresentationInputArray[0].SSI_Device_Usage.Device_Name;
+	Presentation1_SSI_Severity_Message = config.Obj.PresentationInputArray[0].SSI_Equipment_Status.Severity_Message;
+	Presentation1_SSI_Error_Text = config.Obj.PresentationInputArray[0].SSI_Equipment_Status.Error_Text;
+	Presentation1_SSI_Ok_Text = config.Obj.PresentationInputArray[0].SSI_Equipment_Status.Ok_Text;
+    }catch{};
+
+	//Presentation Input 2
+	try{
+	Presentation1_Name = config.Obj.PresentationInputArray[1].Name;
+	Presentation1_Type = config.Obj.PresentationInputArray[1].Type;
+	Presentation1_Switcher_Value = config.Obj.PresentationInputArray[1].Switcher_Value;
+	Presentation1_SSI_Device_Usage_Type = config.Obj.PresentationInputArray[1].SSI_Device_Usage.Device_Type;
+	Presentation1_SSI_Device_Usage_Name = config.Obj.PresentationInputArray[1].SSI_Device_Usage.Device_Name;
+	Presentation1_SSI_Severity_Message = config.Obj.PresentationInputArray[1].SSI_Equipment_Status.Severity_Message;
+	Presentation1_SSI_Error_Text = config.Obj.PresentationInputArray[1].SSI_Equipment_Status.Error_Text;
+	Presentation1_SSI_Ok_Text = config.Obj.PresentationInputArray[1].SSI_Equipment_Status.Ok_Text;
+    }catch{};
+
+	//Presentation Input 3
+	try{
+	Presentation1_Name = config.Obj.PresentationInputArray[2].Name;
+	Presentation1_Type = config.Obj.PresentationInputArray[2].Type;
+	Presentation1_Switcher_Value = config.Obj.PresentationInputArray[2].Switcher_Value;
+	Presentation1_SSI_Device_Usage_Type = config.Obj.PresentationInputArray[2].SSI_Device_Usage.Device_Type;
+	Presentation1_SSI_Device_Usage_Name = config.Obj.PresentationInputArray[2].SSI_Device_Usage.Device_Name;
+	Presentation1_SSI_Severity_Message = config.Obj.PresentationInputArray[2].SSI_Equipment_Status.Severity_Message;
+	Presentation1_SSI_Error_Text = config.Obj.PresentationInputArray[2].SSI_Equipment_Status.Error_Text;
+	Presentation1_SSI_Ok_Text = config.Obj.PresentationInputArray[2].SSI_Equipment_Status.Ok_Text;
+    }catch{};
+	//Presentation Input 4
+	try{
+	Presentation1_Name = config.Obj.PresentationInputArray[3].Name;
+	Presentation1_Type = config.Obj.PresentationInputArray[3].Type;
+	Presentation1_Switcher_Value = config.Obj.PresentationInputArray[3].Switcher_Value;
+	Presentation1_SSI_Device_Usage_Type = config.Obj.PresentationInputArray[3].SSI_Device_Usage.Device_Type;
+	Presentation1_SSI_Device_Usage_Name = config.Obj.PresentationInputArray[3].SSI_Device_Usage.Device_Name;
+	Presentation1_SSI_Severity_Message = config.Obj.PresentationInputArray[3].SSI_Equipment_Status.Severity_Message;
+	Presentation1_SSI_Error_Text = config.Obj.PresentationInputArray[3].SSI_Equipment_Status.Error_Text;
+	Presentation1_SSI_Ok_Text = config.Obj.PresentationInputArray[3].SSI_Equipment_Status.Ok_Text;
+    }catch{}
+	//Presentation Input 5
+	try{
+	Presentation1_Name = config.Obj.PresentationInputArray[4].Name;
+	Presentation1_Type = config.Obj.PresentationInputArray[4].Type;
+	Presentation1_Switcher_Value = config.Obj.PresentationInputArray[4].Switcher_Value;
+	Presentation1_SSI_Device_Usage_Type = config.Obj.PresentationInputArray[4].SSI_Device_Usage.Device_Type;
+	Presentation1_SSI_Device_Usage_Name = config.Obj.PresentationInputArray[4].SSI_Device_Usage.Device_Name;
+	Presentation1_SSI_Severity_Message = config.Obj.PresentationInputArray[4].SSI_Equipment_Status.Severity_Message;
+	Presentation1_SSI_Error_Text = config.Obj.PresentationInputArray[4].SSI_Equipment_Status.Error_Text;
+	Presentation1_SSI_Ok_Text = config.Obj.PresentationInputArray[4].SSI_Equipment_Status.Ok_Text;
+    }catch{}
+	//Presentation Input 6
+	try{
+	Presentation1_Name = config.Obj.PresentationInputArray[5].Name;
+	Presentation1_Type = config.Obj.PresentationInputArray[5].Type;
+	Presentation1_Switcher_Value = config.Obj.PresentationInputArray[5].Switcher_Value;
+	Presentation1_SSI_Device_Usage_Type = config.Obj.PresentationInputArray[5].SSI_Device_Usage.Device_Type;
+	Presentation1_SSI_Device_Usage_Name = config.Obj.PresentationInputArray[5].SSI_Device_Usage.Device_Name;
+	Presentation1_SSI_Severity_Message = config.Obj.PresentationInputArray[5].SSI_Equipment_Status.Severity_Message;
+	Presentation1_SSI_Error_Text = config.Obj.PresentationInputArray[5].SSI_Equipment_Status.Error_Text;
+	Presentation1_SSI_Ok_Text = config.Obj.PresentationInputArray[5].SSI_Equipment_Status.Ok_Text;
+    }catch{}
+	//ATC
+	ATC_Extension = config.Obj.ATC.Extension;
+	ATC_Help_Number = config.Obj.ATC.Help_Number;
+	ATC_Help_Btn_Text = config.Obj.ATC.Help_Button_Text;
+	ATC_Connected_Dial_Text = config.Obj.ATC.Connected_Dial_Text;
+	ATC_Disconnected_Dial_Text = config.Obj.ATC.Disconnected_Dial_Text;
+	ATC_Connected_Hangup_Text = config.Obj.ATC.Connected_Hangup_Text;
+	ATC_Disconnected_Hangup_Text = config.Obj.ATC.Disconnected_Hangup_Text;
+	ATC_SSI_Device_Usage_Type = config.Obj.ATC.SSI_Device_Usage.Device_Type;
+	ATC_SSI_Device_Usage_Name = config.Obj.ATC.SSI_Device_Usage.Device_Name;
+	ATC_SSI_Severity_Message = config.Obj.ATC.SSI_Equipment_Status.Severity_Message;
+	ATC_SSI_Error_Text = config.Obj.ATC.SSI_Equipment_Status.Error_Text;
+	ATC_SSI_Ok_Text = config.Obj.ATC.SSI_Equipment_Status.Ok_Text;
+	
+	VTC_Extension = config.Obj.VTC.Extension;
+	VTC_Help_Number = config.Obj.VTC.Help_Number;
+	VTC_Help_Btn_Text = config.Obj.VTC.Help_Button_Text;
+	VTC_Connected_Dial_Text = config.Obj.VTC.Connected_Dial_Text;
+	VTC_Disconnected_Dial_Text  = config.Obj.VTC.Disconnected_Dial_Text;
+	VTC_Connected_Hangup_Text = config.Obj.VTC.Connected_Hangup_Text;
+	VTC_Disconnected_Hangup_Text = config.Obj.VTC.Disconnected_Hangup_Text;
+		config.Obj.VTC.PresetToArray();
+	try{
+	VTC_Cam_Preset1_Id = config.Obj.VTC.PresetsArray[0].Id;
+	VTC_Cam_Preset1_Name = config.Obj.VTC.PresetsArray[0].Name;
+	}catch{};
+	try{
+	VTC_Cam_Preset2_Id = config.Obj.VTC.PresetsArray[1].Id;
+	VTC_Cam_Preset2_Name = config.Obj.VTC.PresetsArray[1].Name;
+	}catch{};
+	try{
+	VTC_Cam_Preset3_Id = config.Obj.VTC.PresetsArray[2].Id;
+	VTC_Cam_Preset3_Name = config.Obj.VTC.PresetsArray[2].Name;
+	}catch{};
+	try{
+	VTC_Cam_Preset4_Id = config.Obj.VTC.PresetsArray[3].Id;
+	VTC_Cam_Preset4_Name = config.Obj.VTC.PresetsArray[3].Name;
+	}catch{};
+	try{
+	VTC_Cam_Preset5_Id = config.Obj.VTC.PresetsArray[4].Id;
+	VTC_Cam_Preset5_Name = config.Obj.VTC.PresetsArray[4].Name;
+	}catch{};
+	try{
+	VTC_Cam_Preset6_Id = config.Obj.VTC.PresetsArray[5].Id;
+	VTC_Cam_Preset6_Name = config.Obj.VTC.PresetsArray[5].Name;  
+	}catch{};                                                         	
+	VTC_SSI_Device_Usage_Type = config.Obj.VTC.SSI_Device_Usage.Device_Type;
+	VTC_SSI_Device_Usage_Name = config.Obj.VTC.SSI_Device_Usage.Device_Name;
+	VTC_SSI_Severity_Message = config.Obj.VTC.SSI_Equipment_Status.Severity_Message;
+	VTC_SSI_Error_Text = config.Obj.VTC.SSI_Equipment_Status.Error_Text;
+	VTC_SSI_Ok_Text = config.Obj.VTC.SSI_Equipment_Status.Ok_Text;
+	
+	//Lighting
+		config.Obj.Lighting.PresetToArray();
+	try{
+	Lighting_Preset1_ID = config.Obj.Lighting.PresetsArray[0].Id;
+	Lighting_Preset1_Name = config.Obj.Lighting.PresetsArray[0].Name;
+	}catch{};
+	try{
+	Lighting_Preset2_ID = config.Obj.Lighting.PresetsArray[1].Id;
+	Lighting_Preset2_Name = config.Obj.Lighting.PresetsArray[1].Name;
+	}catch{};
+	try{
+	Lighting_Preset3_ID = config.Obj.Lighting.PresetsArray[2].Id;
+	Lighting_Preset3_Name = config.Obj.Lighting.PresetsArray[2].Name;
+	}catch{};
+	try{
+	Lighting_Preset4_ID = config.Obj.Lighting.PresetsArray[3].Id;
+	Lighting_Preset4_Name = config.Obj.Lighting.PresetsArray[3].Name;
+	}catch{};
+	try{
+	Lighting_Preset5_ID = config.Obj.Lighting.PresetsArray[4].Id;
+	Lighting_Preset5_Name = config.Obj.Lighting.PresetsArray[4].Name;
+	}catch{};
+	try{
+	Lighting_Preset6_ID = config.Obj.Lighting.PresetsArray[5].Id;
+	Lighting_Preset6_Name = config.Obj.Lighting.PresetsArray[5].Name;
+	}catch{};
+	Lighting_SSI_Severity_Message = config.Obj.Lighting.SSI_Equipment_Status.Severity_Message;
+	Lighting_SSI_Error_Text = config.Obj.Lighting.SSI_Equipment_Status.Error_Text;
+	Lighting_SSI_Ok_Text = config.Obj.Lighting.SSI_Equipment_Status.Ok_Text;
+
+	//Power Sequencer 1
+    	config.Obj.PowerSequencerToArray();
+	try{
+	Sequencer1_Ch1_Name = config.Obj.PowerSequencerArray[0].Channel_1_Name;
+	Sequencer1_Ch2_Name = config.Obj.PowerSequencerArray[0].Channel_2_Name;
+	Sequencer1_Ch3_Name = config.Obj.PowerSequencerArray[0].Channel_1_Name;
+	Sequencer1_Ch4_Name = config.Obj.PowerSequencerArray[0].Channel_1_Name;
+	Sequencer1_Ch5_Name = config.Obj.PowerSequencerArray[0].Channel_1_Name;
+	Sequencer1_Ch6_Name = config.Obj.PowerSequencerArray[0].Channel_1_Name;
+	Sequencer1_Ch7_Name = config.Obj.PowerSequencerArray[0].Channel_1_Name;
+	Sequencer1_Ch8_Name = config.Obj.PowerSequencerArray[0].Channel_1_Name;
+	}catch{};
+	Sequencer1_SSI_Severity_Message = config.Obj.PowerSequencerArray[0].SSI_Equipment_Status.Severity_Message;
+	Sequencer1_SSI_Error_Text = config.Obj.PowerSequencerArray[0].SSI_Equipment_Status.Error_Text;
+	Sequencer1_SSI_Ok_Text = config.Obj.PowerSequencerArray[0].SSI_Equipment_Status.Ok_Text;
+
+	//Power Sequencer 2
+
+	try{
+	Sequencer2_Ch1_Name = config.Obj.PowerSequencerArray[1].Channel_1_Name;
+	Sequencer2_Ch2_Name = config.Obj.PowerSequencerArray[1].Channel_1_Name;
+	Sequencer2_Ch3_Name = config.Obj.PowerSequencerArray[1].Channel_1_Name;
+	Sequencer2_Ch4_Name = config.Obj.PowerSequencerArray[1].Channel_1_Name;
+	Sequencer2_Ch5_Name = config.Obj.PowerSequencerArray[1].Channel_1_Name;
+	Sequencer2_Ch6_Name = config.Obj.PowerSequencerArray[1].Channel_1_Name;
+	Sequencer2_Ch7_Name = config.Obj.PowerSequencerArray[1].Channel_1_Name;
+	Sequencer2_Ch8_Name = config.Obj.PowerSequencerArray[1].Channel_1_Name;
+	}catch{};
+	Sequencer2_SSI_Severity_Message = config.Obj.PowerSequencerArray[1].SSI_Equipment_Status.Severity_Message;
+	Sequencer2_SSI_Error_Text = config.Obj.PowerSequencerArray[1].SSI_Equipment_Status.Error_Text;
+	Sequencer2_SSI_Ok_Text = config.Obj.PowerSequencerArray[1].SSI_Equipment_Status.Ok_Text;
+}
+
+/*
+EVENT
+{
+    // TODO:  Add code here
+}
+*/
+
+/*
+SOCKETCONNECT
+{
+    // TODO:  Add code here
+}
+*/
+
+/*
+SOCKETDISCONNECT
+{
+    // TODO:  Add code here
+}
+*/
+
+/*
+SOCKETRECEIVE
+{
+    // TODO:  Add code here
+}
+*/
+
+/*
+SOCKETSTATUS
+{
+    // TODO:  Add code here
+}
+*/
+
+/*******************************************************************************************
+  Main()
+  Uncomment and place one-time startup code here
+  (This code will get called when the system starts up)
+*******************************************************************************************/
+
+Function Main()
+{
+	//Room_Name = Config.RmName;
+    // TODO:  Add code here
+    // Initialize declared global and local variables/arrays as needed.
+
+    // WaitForInitializationComplete();
+    // If you are reading any Input or Output variables, uncomment
+    //   the WaitForInitializationComplete statement above and read
+    //   them afterwards.  Input/Output variables will not have
+    //   their correct values set until after the logic processor
+    //   runs and propagates the values to them.
+	api.Start();
+	Configuration.filePath = PATH$;
+}
+
+
