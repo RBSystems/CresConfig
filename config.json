@@ -1,6 +1,9 @@
 {
     "Room_Name": "Room 107",
     "Welcome_Text": "Press Screen to Begin.",
+    "Shutdown_Text": "Are you sure you want to shut down the system?",
+    "Warming_Text": "Please wait while the system starts",
+    "Cooling_Text": "Please wait while the system shuts down",
     "Startup_Time": 30,
     "Shutdown_Time_Display_Active": 60,
     "Shutdown_Time_Display_Inactive": 15,
@@ -38,6 +41,7 @@
         {
             "Name": "Left HDMI",
             "Type": "HDMI",
+            "Generic_Page_Text": "This input has no user controls",
             "Switcher_Value": 1,
             "SSI_Device_Usage": {
                 "Device_Type": "Generic Source",

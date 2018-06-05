@@ -1,6 +1,7 @@
 export interface RootConfig {
     Room_Name: string;
     Welcome_Text: string;
+    Shutdown_Text: string;
     Warming_Text: string;
     Cooling_Text: string;
     Startup_Time: number;
