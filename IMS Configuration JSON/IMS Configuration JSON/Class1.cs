@@ -164,6 +164,7 @@ namespace IMS_Configuration
         {
             public string Room_Name { get; set; }
             public string Welcome_Text { get; set; }
+            public string Shutdown_Text { get; set; }
             public string Warming_Text { get; set; }
             public string Cooling_Text { get; set; }
             public ushort Startup_Time { get; set; }

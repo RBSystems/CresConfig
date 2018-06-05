@@ -266,6 +266,7 @@ namespace IMS_Configuration;
         // class properties
         STRING Room_Name[];
         STRING Welcome_Text[];
+        STRING Shutdown_Text[];
         STRING Warming_Text[];
         STRING Cooling_Text[];
         INTEGER Startup_Time;
