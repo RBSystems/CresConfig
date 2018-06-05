@@ -27,6 +27,7 @@ export interface RootConfig {
     Name: string;
     Type: string;
     Value: number;
+    Generic_Page_Text: string;
     SSI_Device_Usage: SSIDeviceUsageEntity;
     SSI_Equipment_Status: SSIEquipmentStatusEntity;
   }

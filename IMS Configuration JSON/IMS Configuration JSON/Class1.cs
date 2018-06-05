@@ -71,6 +71,7 @@ namespace IMS_Configuration
         {
             public string Name { get; set; }
             public string Type { get; set; }
+            public string Generic_Page_Text { get; set; }
             public ushort Switcher_Value { get; set; }
             public SSI_Device_Usage SSI_Device_Usage { get; set; }
             public SSI_Equipment_Status SSI_Equipment_Status { get; set; }

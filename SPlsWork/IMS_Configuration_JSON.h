@@ -72,6 +72,7 @@ namespace IMS_Configuration;
         // class properties
         STRING Name[];
         STRING Type[];
+        STRING Generic_Page_Text[];
         INTEGER Switcher_Value;
         SSI_Device_Usage SSI_Device_Usage;
         SSI_Equipment_Status SSI_Equipment_Status;

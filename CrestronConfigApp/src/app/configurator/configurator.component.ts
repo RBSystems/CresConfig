@@ -253,6 +253,7 @@ export class ConfiguratorComponent implements OnInit {
     const presentationInput: any =  {
       Name: 'New Input',
       Type: 'New Type',
+      Generic_Input_Text: 'Use the controls on the Device for this Input',
       Switcher_Value: 99,
       SSI_Device_Usage: this.createSSIDeviceUsage(),
       SSI_Equipment_Status: this.createSSIEquipmentStatus()

@@ -67,37 +67,38 @@ ANALOG_OUTPUT 	Display2_Warming_Time;
 STRING_OUTPUT	Display2_SSI_Usage_Name, Display2_SSI_Severity_Message, Display2_SSI_Error_Text,
 				Display2_SSI_OK_Text;
 //Presentation Input 1
-STRING_OUTPUT	_SKIP_, Presentation1_Name, Presentation1_Type;
+STRING_OUTPUT	_SKIP_, Presentation1_Name, Presentation1_Type, Presentation1_Generic_Page_Text;
 ANALOG_OUTPUT	Presentation1_Switcher_Value;
 STRING_OUTPUT	Presentation1_SSI_Device_Usage_Type, Presentation1_SSI_Device_Usage_Name,
 				Presentation1_SSI_Severity_Message, Presentation1_SSI_Error_Text,
 				Presentation1_SSI_Ok_Text;
+
 //Presentation Input 2
-STRING_OUTPUT	_SKIP_, Presentation2_Name, Presentation2_Type;
+STRING_OUTPUT	_SKIP_, Presentation2_Name, Presentation2_Type, Presentation2_Generic_Page_Text;
 ANALOG_OUTPUT	Presentation2_Switcher_Value;
 STRING_OUTPUT	Presentation2_SSI_Device_Usage_Type, Presentation2_SSI_Device_Usage_Name,
 				Presentation2_SSI_Severity_Message, Presentation2_SSI_Error_Text,
 				Presentation2_SSI_Ok_Text;
 //Presentation Input 3
-STRING_OUTPUT	_SKIP_, Presentation3_Name, Presentation3_Type;
+STRING_OUTPUT	_SKIP_, Presentation3_Name, Presentation3_Type, Presentation3_Generic_Page_Text;
 ANALOG_OUTPUT	Presentation3_Switcher_Value;
 STRING_OUTPUT	Presentation3_SSI_Device_Usage_Type, Presentation3_SSI_Device_Usage_Name,
 				Presentation3_SSI_Severity_Message, Presentation3_SSI_Error_Text,
 				Presentation3_SSI_Ok_Text;
 //Presentation Input 4
-STRING_OUTPUT	_SKIP_, Presentation4_Name, Presentation4_Type;
+STRING_OUTPUT	_SKIP_, Presentation4_Name, Presentation4_Type, Presentation4_Generic_Page_Text;
 ANALOG_OUTPUT	Presentation4_Switcher_Value;
 STRING_OUTPUT	Presentation4_SSI_Device_Usage_Type, Presentation4_SSI_Device_Usage_Name,
 				Presentation4_SSI_Severity_Message, Presentation4_SSI_Error_Text,
 				Presentation4_SSI_Ok_Text;
 //Presentation Input 5
-STRING_OUTPUT	_SKIP_, Presentation5_Name, Presentation5_Type;
+STRING_OUTPUT	_SKIP_, Presentation5_Name, Presentation5_Type, Presentation5_Generic_Page_Text;
 ANALOG_OUTPUT	Presentation5_Switcher_Value;
 STRING_OUTPUT	Presentation5_SSI_Device_Usage_Type, Presentation5_SSI_Device_Usage_Name,
 				Presentation5_SSI_Severity_Message, Presentation5_SSI_Error_Text,
 				Presentation5_SSI_Ok_Text;
 //Presentation Input 6
-STRING_OUTPUT	_SKIP_, Presentation6_Name, Presentation6_Type;
+STRING_OUTPUT	_SKIP_, Presentation6_Name, Presentation6_Type, Presentation6_Generic_Page_Text;
 ANALOG_OUTPUT	Presentation6_Switcher_Value;
 STRING_OUTPUT	Presentation6_SSI_Device_Usage_Type, Presentation6_SSI_Device_Usage_Name,
 				Presentation6_SSI_Severity_Message, Presentation6_SSI_Error_Text,
@@ -285,6 +286,7 @@ PUSH Pull_Config
 	config.Obj.PresentationToArray();
 	Presentation1_Name = config.Obj.PresentationInputArray[0].Name;
 	Presentation1_Type = config.Obj.PresentationInputArray[0].Type;
+	Presentation1_Type = config.Obj.PresentationInputArray[0].Generic_Page_Text;
 	Presentation1_Switcher_Value = config.Obj.PresentationInputArray[0].Switcher_Value;
 	Presentation1_SSI_Device_Usage_Type = config.Obj.PresentationInputArray[0].SSI_Device_Usage.Device_Type;
 	Presentation1_SSI_Device_Usage_Name = config.Obj.PresentationInputArray[0].SSI_Device_Usage.Device_Name;
@@ -295,59 +297,64 @@ PUSH Pull_Config
 
 	//Presentation Input 2
 	try{
-	Presentation1_Name = config.Obj.PresentationInputArray[1].Name;
-	Presentation1_Type = config.Obj.PresentationInputArray[1].Type;
-	Presentation1_Switcher_Value = config.Obj.PresentationInputArray[1].Switcher_Value;
-	Presentation1_SSI_Device_Usage_Type = config.Obj.PresentationInputArray[1].SSI_Device_Usage.Device_Type;
-	Presentation1_SSI_Device_Usage_Name = config.Obj.PresentationInputArray[1].SSI_Device_Usage.Device_Name;
-	Presentation1_SSI_Severity_Message = config.Obj.PresentationInputArray[1].SSI_Equipment_Status.Severity_Message;
-	Presentation1_SSI_Error_Text = config.Obj.PresentationInputArray[1].SSI_Equipment_Status.Error_Text;
-	Presentation1_SSI_Ok_Text = config.Obj.PresentationInputArray[1].SSI_Equipment_Status.Ok_Text;
+	Presentation2_Name = config.Obj.PresentationInputArray[1].Name;
+	Presentation2_Type = config.Obj.PresentationInputArray[1].Type;
+	Presentation2_Type = config.Obj.PresentationInputArray[1].Generic_Page_Text;
+	Presentation2_Switcher_Value = config.Obj.PresentationInputArray[1].Switcher_Value;
+	Presentation2_SSI_Device_Usage_Type = config.Obj.PresentationInputArray[1].SSI_Device_Usage.Device_Type;
+	Presentation2_SSI_Device_Usage_Name = config.Obj.PresentationInputArray[1].SSI_Device_Usage.Device_Name;
+	Presentation2_SSI_Severity_Message = config.Obj.PresentationInputArray[1].SSI_Equipment_Status.Severity_Message;
+	Presentation2_SSI_Error_Text = config.Obj.PresentationInputArray[1].SSI_Equipment_Status.Error_Text;
+	Presentation2_SSI_Ok_Text = config.Obj.PresentationInputArray[1].SSI_Equipment_Status.Ok_Text;
     }catch{};
 
 	//Presentation Input 3
 	try{
-	Presentation1_Name = config.Obj.PresentationInputArray[2].Name;
-	Presentation1_Type = config.Obj.PresentationInputArray[2].Type;
-	Presentation1_Switcher_Value = config.Obj.PresentationInputArray[2].Switcher_Value;
-	Presentation1_SSI_Device_Usage_Type = config.Obj.PresentationInputArray[2].SSI_Device_Usage.Device_Type;
-	Presentation1_SSI_Device_Usage_Name = config.Obj.PresentationInputArray[2].SSI_Device_Usage.Device_Name;
-	Presentation1_SSI_Severity_Message = config.Obj.PresentationInputArray[2].SSI_Equipment_Status.Severity_Message;
-	Presentation1_SSI_Error_Text = config.Obj.PresentationInputArray[2].SSI_Equipment_Status.Error_Text;
-	Presentation1_SSI_Ok_Text = config.Obj.PresentationInputArray[2].SSI_Equipment_Status.Ok_Text;
+	Presentation3_Name = config.Obj.PresentationInputArray[2].Name;
+	Presentation3_Type = config.Obj.PresentationInputArray[2].Type;
+    Presentation3_Type = config.Obj.PresentationInputArray[2].Generic_Page_Text;
+	Presentation3_Switcher_Value = config.Obj.PresentationInputArray[2].Switcher_Value;
+	Presentation3_SSI_Device_Usage_Type = config.Obj.PresentationInputArray[2].SSI_Device_Usage.Device_Type;
+	Presentation3_SSI_Device_Usage_Name = config.Obj.PresentationInputArray[2].SSI_Device_Usage.Device_Name;
+	Presentation3_SSI_Severity_Message = config.Obj.PresentationInputArray[2].SSI_Equipment_Status.Severity_Message;
+	Presentation3_SSI_Error_Text = config.Obj.PresentationInputArray[2].SSI_Equipment_Status.Error_Text;
+	Presentation3_SSI_Ok_Text = config.Obj.PresentationInputArray[2].SSI_Equipment_Status.Ok_Text;
     }catch{};
 	//Presentation Input 4
 	try{
-	Presentation1_Name = config.Obj.PresentationInputArray[3].Name;
-	Presentation1_Type = config.Obj.PresentationInputArray[3].Type;
-	Presentation1_Switcher_Value = config.Obj.PresentationInputArray[3].Switcher_Value;
-	Presentation1_SSI_Device_Usage_Type = config.Obj.PresentationInputArray[3].SSI_Device_Usage.Device_Type;
-	Presentation1_SSI_Device_Usage_Name = config.Obj.PresentationInputArray[3].SSI_Device_Usage.Device_Name;
-	Presentation1_SSI_Severity_Message = config.Obj.PresentationInputArray[3].SSI_Equipment_Status.Severity_Message;
-	Presentation1_SSI_Error_Text = config.Obj.PresentationInputArray[3].SSI_Equipment_Status.Error_Text;
-	Presentation1_SSI_Ok_Text = config.Obj.PresentationInputArray[3].SSI_Equipment_Status.Ok_Text;
+	Presentation4_Name = config.Obj.PresentationInputArray[3].Name;
+	Presentation4_Type = config.Obj.PresentationInputArray[3].Type;
+	Presentation4_Type = config.Obj.PresentationInputArray[3].Generic_Page_Text;
+	Presentation4_Switcher_Value = config.Obj.PresentationInputArray[3].Switcher_Value;
+	Presentation4_SSI_Device_Usage_Type = config.Obj.PresentationInputArray[3].SSI_Device_Usage.Device_Type;
+	Presentation4_SSI_Device_Usage_Name = config.Obj.PresentationInputArray[3].SSI_Device_Usage.Device_Name;
+	Presentation4_SSI_Severity_Message = config.Obj.PresentationInputArray[3].SSI_Equipment_Status.Severity_Message;
+	Presentation4_SSI_Error_Text = config.Obj.PresentationInputArray[3].SSI_Equipment_Status.Error_Text;
+	Presentation4_SSI_Ok_Text = config.Obj.PresentationInputArray[3].SSI_Equipment_Status.Ok_Text;
     }catch{}
 	//Presentation Input 5
 	try{
-	Presentation1_Name = config.Obj.PresentationInputArray[4].Name;
-	Presentation1_Type = config.Obj.PresentationInputArray[4].Type;
-	Presentation1_Switcher_Value = config.Obj.PresentationInputArray[4].Switcher_Value;
-	Presentation1_SSI_Device_Usage_Type = config.Obj.PresentationInputArray[4].SSI_Device_Usage.Device_Type;
-	Presentation1_SSI_Device_Usage_Name = config.Obj.PresentationInputArray[4].SSI_Device_Usage.Device_Name;
-	Presentation1_SSI_Severity_Message = config.Obj.PresentationInputArray[4].SSI_Equipment_Status.Severity_Message;
-	Presentation1_SSI_Error_Text = config.Obj.PresentationInputArray[4].SSI_Equipment_Status.Error_Text;
-	Presentation1_SSI_Ok_Text = config.Obj.PresentationInputArray[4].SSI_Equipment_Status.Ok_Text;
+	Presentation5_Name = config.Obj.PresentationInputArray[4].Name;
+	Presentation5_Type = config.Obj.PresentationInputArray[4].Type;
+	Presentation5_Type = config.Obj.PresentationInputArray[4].Generic_Page_Text;
+	Presentation5_Switcher_Value = config.Obj.PresentationInputArray[4].Switcher_Value;
+	Presentation5_SSI_Device_Usage_Type = config.Obj.PresentationInputArray[4].SSI_Device_Usage.Device_Type;
+	Presentation5_SSI_Device_Usage_Name = config.Obj.PresentationInputArray[4].SSI_Device_Usage.Device_Name;
+	Presentation5_SSI_Severity_Message = config.Obj.PresentationInputArray[4].SSI_Equipment_Status.Severity_Message;
+	Presentation5_SSI_Error_Text = config.Obj.PresentationInputArray[4].SSI_Equipment_Status.Error_Text;
+	Presentation5_SSI_Ok_Text = config.Obj.PresentationInputArray[4].SSI_Equipment_Status.Ok_Text;
     }catch{}
 	//Presentation Input 6
 	try{
-	Presentation1_Name = config.Obj.PresentationInputArray[5].Name;
-	Presentation1_Type = config.Obj.PresentationInputArray[5].Type;
-	Presentation1_Switcher_Value = config.Obj.PresentationInputArray[5].Switcher_Value;
-	Presentation1_SSI_Device_Usage_Type = config.Obj.PresentationInputArray[5].SSI_Device_Usage.Device_Type;
-	Presentation1_SSI_Device_Usage_Name = config.Obj.PresentationInputArray[5].SSI_Device_Usage.Device_Name;
-	Presentation1_SSI_Severity_Message = config.Obj.PresentationInputArray[5].SSI_Equipment_Status.Severity_Message;
-	Presentation1_SSI_Error_Text = config.Obj.PresentationInputArray[5].SSI_Equipment_Status.Error_Text;
-	Presentation1_SSI_Ok_Text = config.Obj.PresentationInputArray[5].SSI_Equipment_Status.Ok_Text;
+	Presentation6_Name = config.Obj.PresentationInputArray[5].Name;
+	Presentation6_Type = config.Obj.PresentationInputArray[5].Type;
+	Presentation6_Type = config.Obj.PresentationInputArray[5].Generic_Page_Text;
+	Presentation6_Switcher_Value = config.Obj.PresentationInputArray[5].Switcher_Value;
+	Presentation6_SSI_Device_Usage_Type = config.Obj.PresentationInputArray[5].SSI_Device_Usage.Device_Type;
+	Presentation6_SSI_Device_Usage_Name = config.Obj.PresentationInputArray[5].SSI_Device_Usage.Device_Name;
+	Presentation6_SSI_Severity_Message = config.Obj.PresentationInputArray[5].SSI_Equipment_Status.Severity_Message;
+	Presentation6_SSI_Error_Text = config.Obj.PresentationInputArray[5].SSI_Equipment_Status.Error_Text;
+	Presentation6_SSI_Ok_Text = config.Obj.PresentationInputArray[5].SSI_Equipment_Status.Ok_Text;
     }catch{}
 	//ATC
 	ATC_Extension = config.Obj.ATC.Extension;
