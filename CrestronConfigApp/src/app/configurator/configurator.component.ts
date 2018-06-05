@@ -78,7 +78,7 @@ export class ConfiguratorComponent implements OnInit {
       Room_Name: ['', Validators.required ],
       Welcome_Text: ['', Validators.required ],
       Shutdown_Text: ['', Validators.required ],
-      Warming_Test: ['', Validators.required ],
+      Warming_Text: ['', Validators.required ],
       Cooling_Text: ['', Validators.required ],
       Startup_Time: ['', Validators.required ],
       Shutdown_Time_Display_Active: ['', Validators.required ],
@@ -118,7 +118,7 @@ export class ConfiguratorComponent implements OnInit {
 
   ngOnInit() {
     this.apiIP = window.location.origin;
-    this.apiIP = 'https://172.25.1.106';
+    //this.apiIP = 'https://172.25.1.106';
     this.showConfig();
   }
 
