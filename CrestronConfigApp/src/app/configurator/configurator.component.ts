@@ -77,6 +77,8 @@ export class ConfiguratorComponent implements OnInit {
     this.configForm = this.fb.group({
       Room_Name: ['', Validators.required ],
       Welcome_Text: ['', Validators.required ],
+      Warming_Test: ['', Validators.required ],
+      Cooling_Text: ['', Validators.required ],
       Startup_Time: ['', Validators.required ],
       Shutdown_Time_Display_Active: ['', Validators.required ],
       Shutdown_Time_Display_Inactive: ['', Validators.required ],
@@ -137,6 +139,8 @@ export class ConfiguratorComponent implements OnInit {
     this.configForm.patchValue({
       Room_Name: this.response.Room_Name,
       Welcome_Text: this.response.Welcome_Text,
+      Warming_Text: this.response.Warming_Text,
+      Cooling_Text: this.response.Cooling_Text,
       Startup_Time: this.response.Startup_Time,
       Shutdown_Time_Display_Active: this.response.Shutdown_Time_Display_Active,
       Shutdown_Time_Display_Inactive: this.response.Shutdown_Time_Display_Inactive
@@ -363,6 +367,8 @@ export class ConfiguratorComponent implements OnInit {
     const saveConfig: RootConfig = {
       Room_Name: formModel.Room_Name,
       Welcome_Text: formModel.Welcome_Text,
+      Warming_Text: formModel.Warming_Text,
+      Cooling_Text: formModel.Cooling_Text,
       Startup_Time: formModel.Startup_Time,
       Shutdown_Time_Display_Active: formModel.Shutdown_Time_Display_Active,
       Shutdown_Time_Display_Inactive: formModel.Shutdown_Time_Display_Inactive,

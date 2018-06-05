@@ -52,7 +52,7 @@ DIGITAL_INPUT Pull_Config;
 
 DIGITAL_OUTPUT _SKIP_;
 ANALOG_OUTPUT 	Startup_Time, Shutdown_Time_Active, Shutdown_Time_Inactive;
-STRING_OUTPUT 	Room_Name, Welcome_Text;
+STRING_OUTPUT 	Room_Name, Welcome_Text, Warming_Text, Cooling_Text;
 //Display 1
 STRING_OUTPUT 	_SKIP_, Display1_Name, Display1_Type;
 DIGITAL_OUTPUT 	Display1_Screen_Enabled;
@@ -252,6 +252,8 @@ PUSH Pull_Config
 	Startup_Time = config.Obj.Startup_Time;
 	Shutdown_Time_Active = config.Obj.Shutdown_Time_Display_Active;
 	Shutdown_Time_Inactive = config.Obj.Shutdown_Time_Display_Inactive;
+	Warming_Text = config.Obj.Warming_Text;
+	Cooling_Text = config.Obj.Cooling_Text;
 
 	//Display 1
 	config.Obj.DisplaysToArray();
