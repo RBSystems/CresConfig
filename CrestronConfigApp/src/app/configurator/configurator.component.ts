@@ -25,7 +25,7 @@ export class ConfiguratorComponent implements OnInit {
   }
 
   get MAXDISPLAYS() {
-    return 2;
+    return 4;
   }
 
   get MAXINPUTS() {
@@ -127,7 +127,7 @@ export class ConfiguratorComponent implements OnInit {
     this.apiIP = window.location.origin;
     this.slot = 0;
     // Uncomment this to use Local
-    // this.apiIP = 'https://172.25.1.106';
+    this.apiIP = 'https://172.25.1.106';
   }
 
   showConfig(slotNumber: number) {
@@ -266,6 +266,7 @@ export class ConfiguratorComponent implements OnInit {
       Type: 'New Type',
       Generic_Input_Text: 'Use the controls on the Device for this Input',
       Switcher_Value: 99,
+      Icon_Value: 99,
       SSI_Device_Usage: this.createSSIDeviceUsage(),
       SSI_Equipment_Status: this.createSSIEquipmentStatus()
     };
@@ -277,6 +278,8 @@ export class ConfiguratorComponent implements OnInit {
     const displayNew: any =  {
       Name: 'New Input',
       Type: 'New Type',
+      Switcher_Value: 99,
+      Icon_Value: 99,
       Screen_Enabled: 1,
       Warming_Time: 30,
       SSI_Display_Usage: this.createSSIDisplayUsage(),

@@ -63,6 +63,8 @@ namespace IMS_Configuration
             public string Name { get; set; }
             public string Type { get; set; }
             public ushort Screen_Enabled { get; set; }
+            public ushort Switcher_Value { get; set; }
+            public ushort Icon_Value { get; set; }
             public ushort Warming_Time { get; set; }
             public SSI_Display_Usage SSI_Display_Usage { get; set; }
             public SSI_Equipment_Status SSI_Equipment_Status { get; set; }
@@ -74,6 +76,7 @@ namespace IMS_Configuration
             public string Type { get; set; }
             public string Generic_Page_Text { get; set; }
             public ushort Switcher_Value { get; set; }
+            public ushort Icon_Value { get; set; }
             public SSI_Device_Usage SSI_Device_Usage { get; set; }
             public SSI_Equipment_Status SSI_Equipment_Status { get; set; }
         }

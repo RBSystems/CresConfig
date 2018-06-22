@@ -19,6 +19,8 @@ export interface RootConfig {
     Name: string;
     Type: string;
     Screen_Enabled: boolean;
+    Switcher_Value: number;
+    Icon_Value: number;
     Warming_Time: number;
     SSI_Display_Usage: SSIDisplayUsageEntity;
     SSI_Equipment_Status: SSIEquipmentStatusEntity;
@@ -27,7 +29,8 @@ export interface RootConfig {
   export interface PresentationInputsEntity {
     Name: string;
     Type: string;
-    Value: number;
+    Switcher_Value: number;
+    Icon_Value: number;
     Generic_Page_Text: string;
     SSI_Device_Usage: SSIDeviceUsageEntity;
     SSI_Equipment_Status: SSIEquipmentStatusEntity;

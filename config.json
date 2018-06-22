@@ -11,6 +11,8 @@
         {
             "Name": "Left Projector",
             "Type": "Projector",
+			"Switcher_Value": 1,
+			"Icon_Value": 1,
             "Screen_Enabled": 1,
             "Warming_Time": 30,
             "SSI_Display_Usage": {
@@ -25,6 +27,40 @@
         {
             "Name": "Right Projector",
             "Type": "Projector",
+			"Icon_Value": 1,
+            "Screen_Enabled": 1,
+            "Screen_Enabled": 0,
+            "Warming_Time": 30,
+            "SSI_Display_Usage": {
+                "Display_Name": "Projector 2"
+            },
+            "SSI_Equipment_Status":{
+                "Severity_Message": "Error",
+                "Error_Text": "Right Projector Offline",
+                "Ok_Text": "Right Projector Ok"
+            }
+        },
+        {
+            "Name": "Front Projector",
+            "Type": "Projector",
+			"Icon_Value": 1,
+            "Screen_Enabled": 1,
+            "Screen_Enabled": 0,
+            "Warming_Time": 30,
+            "SSI_Display_Usage": {
+                "Display_Name": "Projector 2"
+            },
+            "SSI_Equipment_Status":{
+                "Severity_Message": "Error",
+                "Error_Text": "Right Projector Offline",
+                "Ok_Text": "Right Projector Ok"
+            }
+        },
+        {
+            "Name": "Back Projector",
+            "Type": "Projector",
+			"Icon_Value": 1,
+            "Screen_Enabled": 1,
             "Screen_Enabled": 0,
             "Warming_Time": 30,
             "SSI_Display_Usage": {
@@ -43,6 +79,7 @@
             "Type": "HDMI",
             "Generic_Page_Text": "This input has no user controls",
             "Switcher_Value": 1,
+			"Icon_Value": 1,
             "SSI_Device_Usage": {
                 "Device_Type": "Generic Source",
                 "Device_Name": "HDMI 1"
