@@ -311,8 +311,6 @@ namespace IMS_Configuration
                     //CrestronConsole.PrintLine("HttpMethod: " + context.Request.HttpMethod);
                     //CrestronConsole.PrintLine("HttpPath: " + context.Request.Path);
                     //CrestronConsole.PrintLine("Httpname: " + context.Request.RouteData.Route.Name);
-                    CrestronConsole.PrintLine(context.Request.Path.ToUpper());
-                    CrestronConsole.PrintLine("/CWS/API/" + this.slotNumber + "/CONFIGURATION/");
                     if (context.Request.Path.ToUpper() == "/CWS/API/" + this.slotNumber + "/CONFIGURATION/")
                     {
                         context.Response.StatusCode = 200;
