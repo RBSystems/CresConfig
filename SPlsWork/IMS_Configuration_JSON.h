@@ -296,6 +296,7 @@ namespace IMS_Configuration;
         INTEGER __class_id__;
 
         // class properties
+        STRING ProgramNumber[];
     };
 
      class ApiError 

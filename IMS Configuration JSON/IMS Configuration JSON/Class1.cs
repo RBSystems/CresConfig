@@ -23,6 +23,7 @@ namespace IMS_Configuration
                 StreamReader TheFile = new StreamReader(filePath);
                 JsonString = TheFile.ReadToEnd();
                 TheFile.Close();
+                
             }
             else
             {
@@ -209,6 +210,8 @@ namespace IMS_Configuration
         /// </summary>
         private HttpCwsServer _Server;
 
+        public string ProgramNumber { set; get; }
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -227,8 +230,8 @@ namespace IMS_Configuration
                 if (_Server == null)
                 {
                     CrestronConsole.PrintLine("Starting RESTful CWS API HTTP Server");
-                    _Server = new HttpCwsServer("/API");
-                    _Server.HttpRequestHandler = new _Server_Handler(_Server);
+                    _Server = new HttpCwsServer("/API/" + ProgramNumber + "/");
+                    _Server.HttpRequestHandler = new _Server_Handler(_Server, ProgramNumber);
                     _Server.Routes.Add(new HttpCwsRoute("configuration") { Name = "CONFIGURATION.GET" });
                     _Server.Routes.Add(new HttpCwsRoute("configuration/set") { Name = "CONFIGURATION.SET" });
                     // register the server
@@ -275,11 +278,13 @@ namespace IMS_Configuration
         class _Server_Handler : IHttpCwsHandler
         {
             private HttpCwsServer _Server;
+            private String slotNumber;
             private Configuration.RootObject rootObj;
 
-            public _Server_Handler(HttpCwsServer _Server)
+            public _Server_Handler(HttpCwsServer _Server, string slotNumber)
             {
                 this._Server = _Server;
+                this.slotNumber = slotNumber;
             }
 
             /// <summary>
@@ -306,30 +311,22 @@ namespace IMS_Configuration
                     //CrestronConsole.PrintLine("HttpMethod: " + context.Request.HttpMethod);
                     //CrestronConsole.PrintLine("HttpPath: " + context.Request.Path);
                     //CrestronConsole.PrintLine("Httpname: " + context.Request.RouteData.Route.Name);
-                    if (context.Request.HttpMethod == "GET")
+                    CrestronConsole.PrintLine(context.Request.Path.ToUpper());
+                    CrestronConsole.PrintLine("/CWS/API/" + this.slotNumber + "/CONFIGURATION/");
+                    if (context.Request.Path.ToUpper() == "/CWS/API/" + this.slotNumber + "/CONFIGURATION/")
                     {
                         context.Response.StatusCode = 200;
-                        switch (context.Request.Path.ToUpper())
+                        Configuration config = new Configuration();
+                        switch (context.Request.HttpMethod)
                         {
-                            case "/CWS/API/CONFIGURATION":
-                                Configuration config = new Configuration();
+                            case ("GET"):
                                 config.Reader();
                                 rootObj = config.Obj;
                                 context.Response.Write(JsonConvert.SerializeObject(rootObj), true);
                                 break;
-                            default:
-                                context.Response.StatusCode = 200;
-                                context.Response.Write(JsonConvert.SerializeObject(GetApiHelp()), true);
-                                break;
-                        }
-                    }
-                    if (context.Request.HttpMethod == "PUT")
-                    {
-                        switch (context.Request.Path.ToUpper())
-                        {
-                            case "/CWS/API/CONFIGURATION":
+
+                            case ("PUT"):
                                 string JsonString;
-                                Configuration config = new Configuration();
                                 StreamReader TheFile = new StreamReader(context.Request.InputStream);
                                 JsonString = TheFile.ReadToEnd();
                                 TheFile.Close();

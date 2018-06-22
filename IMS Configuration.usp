@@ -200,7 +200,7 @@ MyStruct1 struct;
 // LONG_INTEGER
 // SIGNED_INTEGER
 // SIGNED_LONG_INTEGER
-   STRING filePath[32];
+   STRING filePath[32], programNumber[6];
    Configuration config;
    RESTfulApi api;
 /*******************************************************************************************
@@ -244,6 +244,12 @@ String_Function MyStrFunction1()
   Event Handlers
   (Uncomment and declare additional event handlers as needed)
 *******************************************************************************************/
+
+Change FileName$
+{
+ 	makestring(filePath, "\\USER\\%d\\%s", GetProgramNumber(), FileName$);
+	Configuration.filePath = filePath;
+}
 
 PUSH Pull_Config
 {
@@ -526,10 +532,10 @@ Function Main()
     //   them afterwards.  Input/Output variables will not have
     //   their correct values set until after the logic processor
     //   runs and propagates the values to them.
+	makestring(programNumber, "%d", GetProgramNumber());
+	api.ProgramNumber = programNumber;
 	api.Start();
 	
-	makestring(filePath, "\\USER\\%d\\%s", GetProgramNumber(), FileName$);
-	Configuration.filePath = filePath;
 }
 
 
