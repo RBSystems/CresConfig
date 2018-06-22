@@ -20,6 +20,10 @@ export class ConfiguratorComponent implements OnInit {
 
   apiIP: string;
 
+  get slots() {
+    return [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  }
+
   get MAXDISPLAYS() {
     return 2;
   }
@@ -50,6 +54,8 @@ export class ConfiguratorComponent implements OnInit {
   lightingSettingsCollapsed = true;
   sequencerSettingsCollapsed = true;
 
+  slot: number;
+
   get displays(): FormArray {
     return this.configForm.get('displays') as FormArray;
   }
@@ -72,6 +78,7 @@ export class ConfiguratorComponent implements OnInit {
   constructor(private crestronAPIService: CrestronAPIService, private fb: FormBuilder) {
     this.createForm();
   }
+
 
   createForm() {
     this.configForm = this.fb.group({
@@ -118,12 +125,14 @@ export class ConfiguratorComponent implements OnInit {
 
   ngOnInit() {
     this.apiIP = window.location.origin;
-    //this.apiIP = 'https://172.25.1.106';
-    this.showConfig();
+    this.slot = 0;
+    // Uncomment this to use Local
+    // this.apiIP = 'https://172.25.1.106';
   }
 
-  showConfig() {
-    this.crestronAPIService.getConfig(this.apiIP + '/CWS/API/CONFIGURATION')
+  showConfig(slotNumber: number) {
+    this.slot = slotNumber;
+    this.crestronAPIService.getConfig(this.apiIP + '/CWS/API/' + slotNumber + '/CONFIGURATION/')
     .subscribe((data: RootConfig) => {
       this.response = { ...data };
       this.updateConfig();
@@ -342,7 +351,7 @@ export class ConfiguratorComponent implements OnInit {
   }
 
   onSubmit() {
-    this.crestronAPIService.updateConfig(this.apiIP + '/CWS/API/CONFIGURATION', this.prepareSaveConfig())
+    this.crestronAPIService.updateConfig(this.apiIP + '/CWS/API/' + this.slot + '/CONFIGURATION/', this.prepareSaveConfig())
     .subscribe((obs) => console.log('Config Sent'));
   }
 
