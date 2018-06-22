@@ -20,16 +20,20 @@
   Name=IMS Configuration
   SmplCName=IMS Configuration.usp
   Code=1
-  SysRev5=4.000
+  SysRev5=3.154
   SMWRev=3.00.00
   InputCue1=Pull_Config
   InputSigType1=Digital
+  InputCue2=[~UNUSED~]
+  InputSigType2=Digital
   OutputCue1=[~UNUSED~]
   OutputSigType1=Digital
   OutputCue2=Display1_Screen_Enabled
   OutputSigType2=Digital
   OutputCue3=Display2_Screen_Enabled
   OutputSigType3=Digital
+  InputList2Cue1=FileName$
+  InputList2SigType1=Serial
   OutputList2Cue1=Startup_Time
   OutputList2SigType1=Analog
   OutputList2Cue2=Shutdown_Time_Active
@@ -355,18 +359,16 @@
   OutputList2Cue162=Sequencer2_SSI_Ok_Text
   OutputList2SigType162=Serial
   ParamCue1=[Reference Name]
-  ParamCue2=PATH$
-  ParamSigType2=String
-  MinVariableInputs=1
-  MaxVariableInputs=1
-  MinVariableInputsList2=0
-  MaxVariableInputsList2=0
+  MinVariableInputs=2
+  MaxVariableInputs=2
+  MinVariableInputsList2=1
+  MaxVariableInputsList2=1
   MinVariableOutputs=3
   MaxVariableOutputs=3
   MinVariableOutputsList2=162
   MaxVariableOutputsList2=162
-  MinVariableParams=1
-  MaxVariableParams=1
+  MinVariableParams=0
+  MaxVariableParams=0
   Expand=expand_separately
   Expand2=expand_separately
   ProgramTree=Logic
@@ -381,8 +383,7 @@
   CompilerParamCode5=14
   NumFixedParams=1
   Pp1=1
-  Pp2=2
-  MPp=2
+  MPp=1
   NVStorage=10
   ParamSigType1=String
   SmplCInputCue1=o#
@@ -400,12 +401,4 @@
   H=1
   Tp=1
   NoS=False
-[END]
-[BEGIN]
-  ObjTp=Dp
-  H=2
-  Tp=1
-  HD=False
-  NoS=False
-  VVS=0
 [END]

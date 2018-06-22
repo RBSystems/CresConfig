@@ -48,7 +48,8 @@ Comments:
   DIGITAL, ANALOG and SERIAL INPUTS and OUTPUTS
   (Uncomment and declare inputs and outputs as needed)
 *******************************************************************************************/
-DIGITAL_INPUT Pull_Config;
+DIGITAL_INPUT Pull_Config, _SKIP_;
+STRING_INPUT FileName$[32];
 
 DIGITAL_OUTPUT _SKIP_;
 ANALOG_OUTPUT 	Startup_Time, Shutdown_Time_Active, Shutdown_Time_Inactive;
@@ -156,7 +157,7 @@ STRING_OUTPUT	_SKIP_, Sequencer2_Ch1_Name, Sequencer2_Ch2_Name,
 // SIGNED_INTEGER_PARAMETER
 // LONG_INTEGER_PARAMETER
 // SIGNED_LONG_INTEGER_PARAMETER
-STRING_PARAMETER PATH$[32];
+// STRING_PARAMETER
 
 /*******************************************************************************************
   Parameter Properties
@@ -199,9 +200,9 @@ MyStruct1 struct;
 // LONG_INTEGER
 // SIGNED_INTEGER
 // SIGNED_LONG_INTEGER
-//STRING
-Configuration config;
-RESTfulApi api;
+   STRING filePath[32];
+   Configuration config;
+   RESTfulApi api;
 /*******************************************************************************************
   Functions
   (Add any additional functions here)
@@ -526,7 +527,9 @@ Function Main()
     //   their correct values set until after the logic processor
     //   runs and propagates the values to them.
 	api.Start();
-	Configuration.filePath = PATH$;
+	
+	makestring(filePath, "\\USER\\%d\\%s", GetProgramNumber(), FileName$);
+	Configuration.filePath = filePath;
 }
 
 
