@@ -174,6 +174,10 @@ namespace IMS_Configuration
             public ushort Startup_Time { get; set; }
             public ushort Shutdown_Time_Display_Active { get; set; }
             public ushort Shutdown_Time_Display_Inactive { get; set; }
+            public ushort Microphone_Mute_Enable { get; set; }
+            public string Microphone_Muted_Text { get; set; }
+            public string Microphone_Muted_Not_Text { get; set; }
+            public string Presentation_Page_Text { get; set; }
             public List<Display> Displays { get; set; }
             public Display[] DisplayArray { get; set; }
             public List<PresentationInput> Presentation_Inputs { get; set; }

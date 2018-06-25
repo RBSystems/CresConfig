@@ -7,6 +7,10 @@ export interface RootConfig {
     Startup_Time: number;
     Shutdown_Time_Display_Active: number;
     Shutdown_Time_Display_Inactive: number;
+    Microphone_Mute_Enable: boolean;
+    Microphone_Muted_Text: string;
+    Microphone_Muted_Not_Text: string;
+    Presentation_Page_Text: string;
     Displays?: (DisplaysEntity)[] | null;
     Presentation_Inputs?: (PresentationInputsEntity)[] | null;
     ATC: ATCEntity;

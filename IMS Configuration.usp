@@ -54,6 +54,8 @@ STRING_INPUT FileName$[32];
 DIGITAL_OUTPUT _SKIP_;
 ANALOG_OUTPUT 	Startup_Time, Shutdown_Time_Active, Shutdown_Time_Inactive;
 STRING_OUTPUT 	Room_Name, Welcome_Text, Shutdown_Text, Warming_Text, Cooling_Text;
+DIGITAL_OUTPUT	Microphone_Mute_Enable;
+STRING_OUTPUT	Microphone_Muted_Text, Microphone_Muted_Not_Text, Presentation_Page_Text;
 //Display 1
 STRING_OUTPUT 	_SKIP_, Display1_Name, Display1_Type;
 DIGITAL_OUTPUT 	Display1_Screen_Enabled;
@@ -246,10 +248,14 @@ PUSH Pull_Config
 	Shutdown_Time_Inactive = config.Obj.Shutdown_Time_Display_Inactive;
 	Warming_Text = config.Obj.Warming_Text;
 	Cooling_Text = config.Obj.Cooling_Text;
+	Microphone_Mute_Enable = config.Obj.Microphone_Mute_Enable;
+	Microphone_Muted_Text = config.Obj.Microphone_Muted_Text;
+	Microphone_Muted_Not_Text = config.Obj.Microphone_Muted_Not_Text;
+	Presentation_Page_Text = config.Obj.Presentation_Page_Text;
 
 	//Display 1
-	config.Obj.DisplaysToArray();
 	try{
+	config.Obj.DisplaysToArray();
 	Display1_Name = config.Obj.DisplayArray[0].Name;
 	Display1_Type = config.Obj.DisplayArray[0].Type;
 	Display1_Screen_Enabled = config.Obj.DisplayArray[0].Screen_Enabled;

@@ -7,6 +7,9 @@
     "Startup_Time": 30,
     "Shutdown_Time_Display_Active": 60,
     "Shutdown_Time_Display_Inactive": 15,
+	"Microphone_Enable": 1,
+	"Microphone_Mute_Text": "Microphone Muted",
+	"Microphone_Mute_Not_Text": "Microphone Not Muted",
     "Displays": [
         {
             "Name": "Left Projector",

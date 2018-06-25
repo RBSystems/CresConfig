@@ -214,7 +214,7 @@ PUSH Pull_Config
 	VTC_Disconnected_Dial_Text  = config.Obj.VTC.Disconnected_Dial_Text;
 	VTC_Connected_Hangup_Text = config.Obj.VTC.Connected_Hangup_Text;
 	VTC_Disconnected_Hangup_Text = config.Obj.VTC.Disconnected_Hangup_Text;
-		config.Obj.VTC.PresetToArray();
+	config.Obj.VTC.PresetToArray();
 	try{
 	VTC_Cam_Preset1_Id = config.Obj.VTC.PresetsArray[0].Id;
 	VTC_Cam_Preset1_Name = config.Obj.VTC.PresetsArray[0].Name;
@@ -246,7 +246,7 @@ PUSH Pull_Config
 	VTC_SSI_Ok_Text = config.Obj.VTC.SSI_Equipment_Status.Ok_Text;
 	
 	//Lighting
-		config.Obj.Lighting.PresetToArray();
+	config.Obj.Lighting.PresetToArray();
 	try{
 	Lighting_Preset1_ID = config.Obj.Lighting.PresetsArray[0].Id;
 	Lighting_Preset1_Name = config.Obj.Lighting.PresetsArray[0].Name;

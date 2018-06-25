@@ -90,6 +90,10 @@ export class ConfiguratorComponent implements OnInit {
       Startup_Time: ['', Validators.required ],
       Shutdown_Time_Display_Active: ['', Validators.required ],
       Shutdown_Time_Display_Inactive: ['', Validators.required ],
+      Microphone_Mute_Enable: ['', Validators.required ],
+      Microphone_Muted_Text: ['', Validators.required ],
+      Microphone_Muted_Not_Text: ['', Validators.required ],
+      Presentation_Page_Text: ['', Validators.required ],
       Presentation_Inputs: this.fb.array([ ]),
       displays: this.fb.array([]),
       ATC: this.fb.group({
@@ -124,7 +128,7 @@ export class ConfiguratorComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.apiIP = window.location.origin;
+    // this.apiIP = window.location.origin;
     this.slot = 0;
     // Uncomment this to use Local
     this.apiIP = 'https://172.25.1.106';
@@ -132,6 +136,7 @@ export class ConfiguratorComponent implements OnInit {
 
   showConfig(slotNumber: number) {
     this.slot = slotNumber;
+    console.log('I Dont know:' + slotNumber);
     this.crestronAPIService.getConfig(this.apiIP + '/CWS/API/' + slotNumber + '/CONFIGURATION/')
     .subscribe((data: RootConfig) => {
       this.response = { ...data };
@@ -154,7 +159,12 @@ export class ConfiguratorComponent implements OnInit {
       Cooling_Text: this.response.Cooling_Text,
       Startup_Time: this.response.Startup_Time,
       Shutdown_Time_Display_Active: this.response.Shutdown_Time_Display_Active,
-      Shutdown_Time_Display_Inactive: this.response.Shutdown_Time_Display_Inactive
+      Shutdown_Time_Display_Inactive: this.response.Shutdown_Time_Display_Inactive,
+      Microphone_Mute_Enable: this.response.Microphone_Mute_Enable,
+      Microphone_Muted_Text:  this.response.Microphone_Muted_Text,
+      Microphone_Muted_Not_Text: this.response.Microphone_Muted_Not_Text,
+      Presentation_Page_Text: this.response.Presentation_Page_Text
+
     });
     const ATC = this.configForm.get('ATC') as FormGroup;
     ATC.patchValue({
@@ -388,6 +398,10 @@ export class ConfiguratorComponent implements OnInit {
       Startup_Time: formModel.Startup_Time,
       Shutdown_Time_Display_Active: formModel.Shutdown_Time_Display_Active,
       Shutdown_Time_Display_Inactive: formModel.Shutdown_Time_Display_Inactive,
+      Microphone_Mute_Enable: formModel.Microphone_Mute_Enable,
+      Microphone_Muted_Text:  formModel.Microphone_Muted_Text,
+      Microphone_Muted_Not_Text: formModel.Microphone_Muted_Not_Text,
+      Presentation_Page_Text: formModel.Presentation_Page_Text,
       Displays: displaysDeepCopy,
       Presentation_Inputs: presentationsDeepCopy,
       ATC: ATCDeepCopy,
