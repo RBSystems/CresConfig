@@ -315,7 +315,7 @@ PUSH Pull_Config
 	config.Obj.PresentationToArray();
 	Presentation1_Name = config.Obj.PresentationInputArray[0].Name;
 	Presentation1_Type = config.Obj.PresentationInputArray[0].Type;
-	Presentation1_Type = config.Obj.PresentationInputArray[0].Generic_Page_Text;
+	Presentation1_Generic_Page_Text = config.Obj.PresentationInputArray[0].Generic_Page_Text;
 	Presentation1_Switcher_Value = config.Obj.PresentationInputArray[0].Switcher_Value;
 	Presentation1_Icon_Value = config.Obj.PresentationInputArray[0].Icon_Value;
 	Presentation1_SSI_Device_Usage_Type = config.Obj.PresentationInputArray[0].SSI_Device_Usage.Device_Type;
@@ -329,7 +329,7 @@ PUSH Pull_Config
 	try{
 	Presentation2_Name = config.Obj.PresentationInputArray[1].Name;
 	Presentation2_Type = config.Obj.PresentationInputArray[1].Type;
-	Presentation2_Type = config.Obj.PresentationInputArray[1].Generic_Page_Text;
+	Presentation2_Generic_Page_Text = config.Obj.PresentationInputArray[1].Generic_Page_Text;
 	Presentation2_Switcher_Value = config.Obj.PresentationInputArray[1].Switcher_Value;
 	Presentation2_Icon_Value = config.Obj.PresentationInputArray[1].Icon_Value;
 	Presentation2_SSI_Device_Usage_Type = config.Obj.PresentationInputArray[1].SSI_Device_Usage.Device_Type;
@@ -343,7 +343,7 @@ PUSH Pull_Config
 	try{
 	Presentation3_Name = config.Obj.PresentationInputArray[2].Name;
 	Presentation3_Type = config.Obj.PresentationInputArray[2].Type;
-    Presentation3_Type = config.Obj.PresentationInputArray[2].Generic_Page_Text;
+    Presentation3_Generic_Page_Text = config.Obj.PresentationInputArray[2].Generic_Page_Text;
 	Presentation3_Switcher_Value = config.Obj.PresentationInputArray[2].Switcher_Value;
 	Presentation3_Icon_Value = config.Obj.PresentationInputArray[2].Icon_Value;
 	Presentation3_SSI_Device_Usage_Type = config.Obj.PresentationInputArray[2].SSI_Device_Usage.Device_Type;
@@ -356,7 +356,7 @@ PUSH Pull_Config
 	try{
 	Presentation4_Name = config.Obj.PresentationInputArray[3].Name;
 	Presentation4_Type = config.Obj.PresentationInputArray[3].Type;
-	Presentation4_Type = config.Obj.PresentationInputArray[3].Generic_Page_Text;
+	Presentation4_Generic_Page_Text = config.Obj.PresentationInputArray[3].Generic_Page_Text;
 	Presentation4_Switcher_Value = config.Obj.PresentationInputArray[3].Switcher_Value;
 	Presentation4_Icon_Value = config.Obj.PresentationInputArray[3].Icon_Value;
 	Presentation4_SSI_Device_Usage_Type = config.Obj.PresentationInputArray[3].SSI_Device_Usage.Device_Type;
@@ -369,7 +369,7 @@ PUSH Pull_Config
 	try{
 	Presentation5_Name = config.Obj.PresentationInputArray[4].Name;
 	Presentation5_Type = config.Obj.PresentationInputArray[4].Type;
-	Presentation5_Type = config.Obj.PresentationInputArray[4].Generic_Page_Text;
+	Presentation5_Generic_Page_Text = config.Obj.PresentationInputArray[4].Generic_Page_Text;
 	Presentation5_Switcher_Value = config.Obj.PresentationInputArray[4].Switcher_Value;
 	Presentation5_Icon_Value = config.Obj.PresentationInputArray[4].Icon_Value;
 	Presentation5_SSI_Device_Usage_Type = config.Obj.PresentationInputArray[4].SSI_Device_Usage.Device_Type;
@@ -382,7 +382,7 @@ PUSH Pull_Config
 	try{
 	Presentation6_Name = config.Obj.PresentationInputArray[5].Name;
 	Presentation6_Type = config.Obj.PresentationInputArray[5].Type;
-	Presentation6_Type = config.Obj.PresentationInputArray[5].Generic_Page_Text;
+	Presentation6_Generic_Page_Text = config.Obj.PresentationInputArray[5].Generic_Page_Text;
 	Presentation6_Switcher_Value = config.Obj.PresentationInputArray[5].Switcher_Value;
 	Presentation6_Icon_Value = config.Obj.PresentationInputArray[5].Icon_Value;
 	Presentation6_SSI_Device_Usage_Type = config.Obj.PresentationInputArray[5].SSI_Device_Usage.Device_Type;

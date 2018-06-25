@@ -338,7 +338,7 @@ namespace UserModule_IMS_CONFIGURATION
                                 __context__.SourceCodeLine = 317;
                                 PRESENTATION1_TYPE  .UpdateValue ( CONFIG . Obj . PresentationInputArray [ 0] . Type  ) ; 
                                 __context__.SourceCodeLine = 318;
-                                PRESENTATION1_TYPE  .UpdateValue ( CONFIG . Obj . PresentationInputArray [ 0] . Generic_Page_Text  ) ; 
+                                PRESENTATION1_GENERIC_PAGE_TEXT  .UpdateValue ( CONFIG . Obj . PresentationInputArray [ 0] . Generic_Page_Text  ) ; 
                                 __context__.SourceCodeLine = 319;
                                 PRESENTATION1_SWITCHER_VALUE  .Value = (ushort) ( CONFIG.Obj.PresentationInputArray[ 0 ].Switcher_Value ) ; 
                                 __context__.SourceCodeLine = 320;
@@ -372,7 +372,7 @@ namespace UserModule_IMS_CONFIGURATION
                                     __context__.SourceCodeLine = 331;
                                     PRESENTATION2_TYPE  .UpdateValue ( CONFIG . Obj . PresentationInputArray [ 1] . Type  ) ; 
                                     __context__.SourceCodeLine = 332;
-                                    PRESENTATION2_TYPE  .UpdateValue ( CONFIG . Obj . PresentationInputArray [ 1] . Generic_Page_Text  ) ; 
+                                    PRESENTATION2_GENERIC_PAGE_TEXT  .UpdateValue ( CONFIG . Obj . PresentationInputArray [ 1] . Generic_Page_Text  ) ; 
                                     __context__.SourceCodeLine = 333;
                                     PRESENTATION2_SWITCHER_VALUE  .Value = (ushort) ( CONFIG.Obj.PresentationInputArray[ 1 ].Switcher_Value ) ; 
                                     __context__.SourceCodeLine = 334;
@@ -406,7 +406,7 @@ namespace UserModule_IMS_CONFIGURATION
                                         __context__.SourceCodeLine = 345;
                                         PRESENTATION3_TYPE  .UpdateValue ( CONFIG . Obj . PresentationInputArray [ 2] . Type  ) ; 
                                         __context__.SourceCodeLine = 346;
-                                        PRESENTATION3_TYPE  .UpdateValue ( CONFIG . Obj . PresentationInputArray [ 2] . Generic_Page_Text  ) ; 
+                                        PRESENTATION3_GENERIC_PAGE_TEXT  .UpdateValue ( CONFIG . Obj . PresentationInputArray [ 2] . Generic_Page_Text  ) ; 
                                         __context__.SourceCodeLine = 347;
                                         PRESENTATION3_SWITCHER_VALUE  .Value = (ushort) ( CONFIG.Obj.PresentationInputArray[ 2 ].Switcher_Value ) ; 
                                         __context__.SourceCodeLine = 348;
@@ -440,7 +440,7 @@ namespace UserModule_IMS_CONFIGURATION
                                             __context__.SourceCodeLine = 358;
                                             PRESENTATION4_TYPE  .UpdateValue ( CONFIG . Obj . PresentationInputArray [ 3] . Type  ) ; 
                                             __context__.SourceCodeLine = 359;
-                                            PRESENTATION4_TYPE  .UpdateValue ( CONFIG . Obj . PresentationInputArray [ 3] . Generic_Page_Text  ) ; 
+                                            PRESENTATION4_GENERIC_PAGE_TEXT  .UpdateValue ( CONFIG . Obj . PresentationInputArray [ 3] . Generic_Page_Text  ) ; 
                                             __context__.SourceCodeLine = 360;
                                             PRESENTATION4_SWITCHER_VALUE  .Value = (ushort) ( CONFIG.Obj.PresentationInputArray[ 3 ].Switcher_Value ) ; 
                                             __context__.SourceCodeLine = 361;
@@ -472,7 +472,7 @@ namespace UserModule_IMS_CONFIGURATION
                                                 __context__.SourceCodeLine = 371;
                                                 PRESENTATION5_TYPE  .UpdateValue ( CONFIG . Obj . PresentationInputArray [ 4] . Type  ) ; 
                                                 __context__.SourceCodeLine = 372;
-                                                PRESENTATION5_TYPE  .UpdateValue ( CONFIG . Obj . PresentationInputArray [ 4] . Generic_Page_Text  ) ; 
+                                                PRESENTATION5_GENERIC_PAGE_TEXT  .UpdateValue ( CONFIG . Obj . PresentationInputArray [ 4] . Generic_Page_Text  ) ; 
                                                 __context__.SourceCodeLine = 373;
                                                 PRESENTATION5_SWITCHER_VALUE  .Value = (ushort) ( CONFIG.Obj.PresentationInputArray[ 4 ].Switcher_Value ) ; 
                                                 __context__.SourceCodeLine = 374;
@@ -504,7 +504,7 @@ namespace UserModule_IMS_CONFIGURATION
                                                     __context__.SourceCodeLine = 384;
                                                     PRESENTATION6_TYPE  .UpdateValue ( CONFIG . Obj . PresentationInputArray [ 5] . Type  ) ; 
                                                     __context__.SourceCodeLine = 385;
-                                                    PRESENTATION6_TYPE  .UpdateValue ( CONFIG . Obj . PresentationInputArray [ 5] . Generic_Page_Text  ) ; 
+                                                    PRESENTATION6_GENERIC_PAGE_TEXT  .UpdateValue ( CONFIG . Obj . PresentationInputArray [ 5] . Generic_Page_Text  ) ; 
                                                     __context__.SourceCodeLine = 386;
                                                     PRESENTATION6_SWITCHER_VALUE  .Value = (ushort) ( CONFIG.Obj.PresentationInputArray[ 5 ].Switcher_Value ) ; 
                                                     __context__.SourceCodeLine = 387;
