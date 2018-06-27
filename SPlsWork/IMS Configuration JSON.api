@@ -7,8 +7,8 @@ namespace IMS_Configuration;
         // class events
 
         // class functions
-        FUNCTION Reader ();
-        FUNCTION Writer ();
+        static FUNCTION Reader ();
+        static FUNCTION Writer ();
         STRING_FUNCTION ToString ();
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
 
@@ -37,6 +37,8 @@ namespace IMS_Configuration;
         STRING Name[];
         STRING Type[];
         INTEGER Screen_Enabled;
+        INTEGER Switcher_Value;
+        INTEGER Icon_Value;
         INTEGER Warming_Time;
         SSI_Display_Usage SSI_Display_Usage;
         SSI_Equipment_Status SSI_Equipment_Status;
@@ -60,6 +62,7 @@ namespace IMS_Configuration;
         STRING Type[];
         STRING Generic_Page_Text[];
         INTEGER Switcher_Value;
+        INTEGER Icon_Value;
         SSI_Device_Usage SSI_Device_Usage;
         SSI_Equipment_Status SSI_Equipment_Status;
     };
@@ -108,7 +111,33 @@ namespace IMS_Configuration;
         STRING Name[];
     };
 
-     class VTC 
+     class Generic 
+    {
+        // class delegates
+
+        // class events
+
+        // class functions
+        STRING_FUNCTION ToString ();
+        SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+
+        // class variables
+        INTEGER __class_id__;
+
+        // class properties
+        STRING Name1[];
+        STRING Value1[];
+        STRING Name2[];
+        STRING Value2[];
+        STRING Name3[];
+        STRING Value3[];
+        STRING Name4[];
+        STRING Value4[];
+        STRING Name5[];
+        STRING Value5[];
+    };
+
+     class Camera 
     {
         // class delegates
 
@@ -123,8 +152,40 @@ namespace IMS_Configuration;
         INTEGER __class_id__;
 
         // class properties
-        STRING Extension[];
         Preset PresetsArray[];
+    };
+
+     class GenericArray 
+    {
+        // class delegates
+
+        // class events
+
+        // class functions
+        STRING_FUNCTION ToString ();
+        SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+
+        // class variables
+        INTEGER __class_id__;
+
+        // class properties
+    };
+
+     class VTC 
+    {
+        // class delegates
+
+        // class events
+
+        // class functions
+        STRING_FUNCTION ToString ();
+        SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+
+        // class variables
+        INTEGER __class_id__;
+
+        // class properties
+        STRING Extension[];
         STRING Help_Number[];
         STRING Help_Button_Text[];
         STRING Connected_Dial_Text[];
@@ -258,6 +319,10 @@ namespace IMS_Configuration;
         INTEGER Startup_Time;
         INTEGER Shutdown_Time_Display_Active;
         INTEGER Shutdown_Time_Display_Inactive;
+        INTEGER Microphone_Mute_Enable;
+        STRING Microphone_Muted_Text[];
+        STRING Microphone_Muted_Not_Text[];
+        STRING Presentation_Page_Text[];
         Display DisplayArray[];
         PresentationInput PresentationInputArray[];
         ATC ATC;
@@ -282,6 +347,7 @@ namespace IMS_Configuration;
         INTEGER __class_id__;
 
         // class properties
+        STRING ProgramNumber[];
     };
 
      class ApiError 

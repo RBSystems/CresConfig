@@ -76,6 +76,51 @@
             }
         }
     ],
+	"Cameras": [
+		{
+			"Presets": [
+				{
+					"Type": "Camera",
+					"Id": "1",
+					"Name": "Preset 1"
+				},
+				{
+					"Type": "Camera",
+					"Id": "2",
+					"Name": "Preset 2"
+				},
+				{
+					"Type": "Camera",
+					"Id": "3",
+					"Name": "Preset 3"
+				},
+				{
+					"Type": "Camera",
+					"Id": "4",
+					"Name": "Preset 4"
+				},
+				{
+					"Type": "Camera",
+					"Id": "5",
+					"Name": "Preset 5"
+				},
+				{
+					"Type": "Camera",
+					"Id": "6",
+					"Name": "Preset 6"
+				}
+			],
+			"SSI_Device_Usage": {
+            	"Device_Type": "ATC Codec",
+            	"Device_Name": "ATC Codec"
+        	},
+        	"SSI_Equipment_Status":{
+            	"Severity_Message": "Error",
+            	"Error_Text": "ATC Codec Offline",
+            	"Ok_Text": "ATC Codec Offline"
+        	}
+		}		
+	],
     "Presentation_Inputs": [
         {
             "Name": "Left HDMI",
@@ -120,38 +165,6 @@
         "Disconnected_Dial_Text": "Dial",
         "Connected_Hangup_Text": "Hangup",
         "Disconnected_Hangup_Text": "Disconnected",
-        "Presets": [
-            {
-                "Type": "Camera",
-                "Id": "1",
-                "Name": "Preset 1"
-            },
-            {
-                "Type": "Camera",
-                "Id": "2",
-                "Name": "Preset 2"
-            },
-            {
-                "Type": "Camera",
-                "Id": "3",
-                "Name": "Preset 3"
-            },
-            {
-                "Type": "Camera",
-                "Id": "4",
-                "Name": "Preset 4"
-            },
-            {
-                "Type": "Camera",
-                "Id": "5",
-                "Name": "Preset 5"
-            },
-            {
-                "Type": "Camera",
-                "Id": "6",
-                "Name": "Preset 6"
-            }
-        ],
         "SSI_Device_Usage": {
             "Device_Type": "VTC Codec",
             "Device_Name": "VTC Codec"
@@ -218,5 +231,28 @@
             "Ok_Text": "VTC Codec Offline"
         }
     }
-    ]
+    ],
+	"Generic_Device": [
+		{
+			"Type": "Type",
+			"Name": "Name",
+			"ValueName1": "Value1Name",
+			"Value1": "Value1",
+			"ValueName2": "Value2Name",
+			"Value2": "Value2",
+			"ValueName3": "Value3Name",
+			"Value3": "Value3",
+			"ValueName4": "Value4Name",
+			"Value4": "Value4",
+			"SSI_Device_Usage": {
+            	"Device_Type": "ATC Codec",
+            	"Device_Name": "ATC Codec"
+        	},
+        	"SSI_Equipment_Status":{
+            	"Severity_Message": "Error",
+            	"Error_Text": "ATC Codec Offline",
+            	"Ok_Text": "ATC Codec Offline"
+        	}			
+		}		
+	]
  }

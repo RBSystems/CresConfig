@@ -370,43 +370,6 @@
                           </label>
                         </div>
                       </div>
-                      <div class="row"><h5>Presets</h5></div>
-                      <div class="card-body configForm" *ngIf="VTCPresetsIsCollapsed.length > 0">
-                          <div formArrayName="Presets">
-                            <div class="row">
-                              <div *ngFor="let preset of VTCPresets.controls; let i=index" [formGroupName]="i">
-                                <div clas="column">
-                                  <button type="button" class="btn btn-info btn-display" (click)="collapseAllVTCPresets();VTCPresetsIsCollapsed[i] = false">Preset {{ i + 1 }}</button>
-                                </div>
-                              </div>
-                                <div class="column">
-                                  <button *ngIf="VTCPresets.controls.length < MAXPRESTS" type="button" class="btn btn-info btn-display" (click)="createPreset('VTCPresets')">New Preset</button>
-                                </div> 
-                            </div>
-                            <div *ngFor="let preset of VTCPresets.controls; let i=index" [formGroupName]="i">
-                                <div [attr.id]="'#displayField' + i" [ngbCollapse]="VTCPresetsIsCollapsed[i]"> 
-                                  <div class="row"><h5>Preset {{ i + 1 }}</h5></div>
-                                  <div class="row">
-                                    <div class="form-group column">
-                                      <label class="center-block">Preset Name:
-                                        <input class="form-control" formControlName="Name">
-                                      </label>
-                                    </div>
-                                    <div class="form-group column">
-                                        <label class="center-block">Preset Id:
-                                          <input class="form-control" formControlName="Id">
-                                      </label>
-                                    </div>
-                                    <div class="form-group column">
-                                        <label class="center-block">Preset Type:
-                                          <input class="form-control" formControlName="Type">
-                                      </label>
-                                    </div>
-                                  </div>
-                                </div>
-                            </div>
-                          </div>
-                      </div>
                       <div class="row"><h5>SSI Device Usage</h5></div>
                       <div formGroupName="SSI_Device_Usage" class="row">
                             <div class="form-group column">
@@ -590,7 +553,210 @@
                     </div>
               </div>
         </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+          <h3>Generic Devices</h3>
+          <button type="button" class="btn btn-display" (click)="genericDevicesSettingCollapsed = !genericDevicesSettingCollapsed">{{ genericDevicesSettingCollapsed ? 'Expand' : 'Close' }}</button>
+        </div>
+        <div class="card-body configForm" *ngIf="GenericDevicesIsCollapsed.length > 0" [ngbCollapse]="GenericDevicesIsCollapsed">
+              <div formArrayName="Generic_Device">
+                <div class="row">
+                  <div *ngFor="let genericDevice of Generic_Device.controls; let i=index" [formGroupName]="i">
+                    <div clas="column">
+                      <button type="button" class="btn btn-info btn-display" (click)="collapseAllGenericDevices();GenericDevicesIsCollapsed[i] = false">Generic Device {{ i + 1 }}</button>
+                    </div>
+                  </div>
+                  <div class="column">
+                      <button *ngIf="Generic_Device.controls.length < MAXGENERICDEVICES" type="button" class="btn btn-info btn-display" (click)="createGenericDevice()">New Generic Device</button>
+                  </div> 
+                </div>
+                    <div *ngFor="let genericDevice of Generic_Device.controls; let i=index" [formGroupName]="i">
+                        <div [attr.id]="'#genericDeviceField' + i" [ngbCollapse]="GenericDevicesIsCollapsed[i]"> 
+                          <div class="row"><h5>Generic Device {{ i + 1 }}</h5></div>
+                          <div class="row">
+                            <div class="form-group column">
+                              <label class="center-block">Type:
+                                <input class="form-control" formControlName="Type">
+                              </label>
+                            </div>
+                            <div class="form-group column">
+                              <label class="center-block">Name:
+                                <input class="form-control" formControlName="Name">
+                              </label>
+                            </div>
+                            <div class="form-group column">
+                                <label class="center-block">Value 1 Name:
+                                  <input class="form-control" formControlName="ValueName1">
+                                </label>
+                            </div>
+                            <div class="form-group column">
+                                <label class="center-block">Value 1:
+                                  <input class="form-control" formControlName="Value1">
+                                </label>
+                            </div>
+                            <div class="form-group column">
+                                <label class="center-block">Value 2 Name:
+                                  <input class="form-control" formControlName="ValueName2">
+                                </label>
+                            </div>
+                            <div class="form-group column">
+                                <label class="center-block">Value 2:
+                                  <input class="form-control" formControlName="Value 2">
+                                </label>
+                            </div>
+                            <div class="form-group column">
+                                <label class="center-block">Value 3 Name:
+                                  <input class="form-control" formControlName="ValueName3">
+                                </label>
+                            </div>
+                            <div class="form-group column">
+                                <label class="center-block">Value 3:
+                                  <input class="form-control" formControlName="Value3">
+                                </label>
+                            </div>
+                          </div>
+                          <div class="form-group column">
+                            <label class="center-block">Value 4 Name:
+                              <input class="form-control" formControlName="ValueName4">
+                            </label>
+                          </div>
+                          <div class="form-group column">
+                            <label class="center-block">Value 3:
+                              <input class="form-control" formControlName="Value4">
+                            </label>
+                          </div>
+                        </div>
+                        <div class="row"><h5>SSI Device Usage</h5></div>
+                        <div formGroupName="SSI_Device_Usage" class="row">
+                              <div class="form-group column">
+                                    <label class="center-block">SSI Device Name:
+                                      <input class="form-control" formControlName="Device_Name">
+                                  </label>
+                              </div>
+                              <div class="form-group column">
+                                  <label class="center-block">SSI Device Type:
+                                    <input class="form-control" formControlName="Device_Type">
+                                </label>
+                              </div>
+                        </div>
+                        <div class="row"><h5>SSI Equipmnet Status</h5></div>
+                          <div formGroupName="SSI_Equipment_Status" class="row">
+                                <div class="form-group column">
+                                      <label class="center-block">SSI Ok Text:
+                                        <input class="form-control" formControlName="Ok_Text">
+                                    </label>
+                                </div>
+                                <div class="form-group column">
+                                    <label class="center-block gridBottom">SSI Error Text:
+                                      <input class="form-control gridBottom" formControlName="Error_Text">
+                                  </label>
+                                </div>
+                                <div class="form-group column gridBottom">
+                                    <label class="center-block gridBottom">SSI Severity Message:
+                                      <input class="form-control" formControlName="Severity_Message">
+                                  </label>
+                              </div>
+                          </div>
+                    </div>
+                </div>
+          </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h3>Cameras</h3>
+        <button type="button" class="btn btn-display" (click)="cameraSettingsCollapsed = !cameraSettingsCollapsed">{{ cameraSettingsCollapsed ? 'Expand' : 'Close' }}</button>
       </div>
+      <div class="card-body configForm" *ngIf="CamerasIsCollapsed.length > 0" [ngbCollapse]="CamerasIsCollapsed">
+          <div formArrayName="Camera">
+            <div class="row">
+                <div *ngFor="let camera of Camera.controls; let i=index" [formGroupName]="i">
+                  <div clas="column">
+                      <button type="button" class="btn btn-info btn-display" (click)="collapseAllCameras();CamerasIsCollapsed[i] = false">Camera {{ i + 1 }}</button>
+                  </div>
+                </div>
+                  <div class="column">
+                      <button *ngIf="Camera.controls.length < MAXCAMERAS" type="button" class="btn btn-info btn-display" (click)="createCameraDevice()">New Camera</button>
+                  </div>
+            </div>
+            <div *ngFor="let camera of Camera.controls; let i=index" [formGroupName]="i">
+                <div [attr.id]="'#cameraField' + i" [ngbCollapse]="CamerasIsCollapsed[i]"> 
+                  <div formGroupName="Camera">
+                    <div class="row"><h5>Presets</h5></div>
+                    <div class="card-body configForm" *ngIf="CameraPresetsIsCollapsed[i].length > 0">
+                        <div formArrayName="Presets">
+                          <div class="row">
+                            <div *ngFor="let preset of Presets.controls; let ii=index" [formGroupName]="ii">
+                              <div clas="column">
+                                <button type="button" class="btn btn-info btn-display" (click)="collapseAllCameraPresets();CameraPresetsIsCollapsed[i][ii] = false">Preset {{ ii + 1 }}</button>
+                              </div>
+                            </div>
+                            <div class="column">
+                                <button *ngIf="CameraPresets.controls.length < MAXPRESETS" type="button" class="btn btn-info btn-display" (click)="createPreset('CameraPresets')">New Preset</button>
+                            </div> 
+                          </div>
+                          <div *ngFor="let preset of CameraPresets.controls; let i=index" [formGroupName]="i">
+                              <div [attr.id]="'#displayField' + i" [ngbCollapse]="CameraPresetsIsCollapsed[i]"> 
+                                <div class="row"><h5>Preset {{ i + 1 }}</h5></div>
+                                <div class="row">
+                                  <div class="form-group column">
+                                    <label class="center-block">Preset Name:
+                                      <input class="form-control" formControlName="Name">
+                                    </label>
+                                  </div>
+                                  <div class="form-group column">
+                                      <label class="center-block">Preset Id:
+                                        <input class="form-control" formControlName="Id">
+                                    </label>
+                                  </div>
+                                  <div class="form-group column">
+                                      <label class="center-block">Preset Type:
+                                        <input class="form-control" formControlName="Type">
+                                    </label>
+                                  </div>
+                                </div>
+                              </div>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="row"><h5>SSI Device Usage</h5></div>
+                    <div formGroupName="SSI_Device_Usage" class="row">
+                          <div class="form-group column">
+                                <label class="center-block">SSI Device Name:
+                                  <input class="form-control" formControlName="Device_Name">
+                              </label>
+                          </div>
+                          <div class="form-group column">
+                              <label class="center-block">SSI Device Type:
+                                <input class="form-control" formControlName="Device_Type">
+                            </label>
+                          </div>
+                    </div>
+                    <div class="row"><h5>SSI Equipment Status</h5></div>
+                    <div formGroupName="SSI_Equipment_Status" class="row">
+                          <div class="form-group column">
+                                <label class="center-block">SSI Ok Text:
+                                  <input class="form-control" formControlName="Ok_Text">
+                              </label>
+                          </div>
+                          <div class="form-group column">
+                              <label class="center-block">SSI Error Text:
+                                <input class="form-control" formControlName="Error_Text">
+                            </label>
+                          </div>
+                          <div class="form-group column">
+                              <label class="center-block">SSI Severity Message:
+                                <input class="form-control" formControlName="Severity_Message">
+                            </label>
+                          </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+      </div>
+  </div>
   </form>
 </div>
 

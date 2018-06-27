@@ -12,6 +12,8 @@ export interface RootConfig {
     Microphone_Muted_Not_Text: string;
     Presentation_Page_Text: string;
     Displays?: (DisplaysEntity)[] | null;
+    Cameras?: (CamerasEntity)[] | null;
+    Generic_Device?: (GenericDeviceEntity)[] | null;
     Presentation_Inputs?: (PresentationInputsEntity)[] | null;
     ATC: ATCEntity;
     VTC: VTCEntity;
@@ -67,7 +69,6 @@ export interface RootConfig {
   }
   export interface VTCEntity {
     Extension: string;
-    Presets?: (PresetsEntity)[] | null;
     Help_Number: string;
     Help_Button_Text: string;
     Connected_Dial_Text: string;
@@ -97,4 +98,26 @@ export interface RootConfig {
     Channel_6_Name: string;
     Channel_7_Name: string;
     Channel_8_Name: string;
+    SSI_Equipment_Status: SSIEquipmentStatusEntity;
+  }
+
+  export interface CamerasEntity {
+    Presets?: PresetsEntity[] | null;
+    SSI_Device_Usage: SSIDeviceUsageEntity;
+    SSI_Equipment_Status: SSIEquipmentStatusEntity;
+  }
+
+  export interface GenericDeviceEntity {
+    Type: string;
+    Name: string;
+    ValueName1: string;
+    Value1: string;
+    ValueName2: string;
+    Value2: string;
+    ValueName3: string;
+    Value3: string;
+    ValueName4: string;
+    Value4: string;
+    SSI_Device_Usage: SSIDisplayUsageEntity;
+    SSI_Equipment_Status: SSIEquipmentStatusEntity;
   }

@@ -5,6 +5,8 @@ namespace IMS_Configuration;
          class PresentationInput;
          class ATC;
          class Preset;
+         class Generic_Device;
+         class Camera;
          class VTC;
          class PowerSequencer;
          class SSI_Display_Usage;
@@ -14,15 +16,15 @@ namespace IMS_Configuration;
          class RootObject;
          class RESTfulApi;
          class ApiError;
-     class Configuration 
+    static class Configuration 
     {
         // class delegates
 
         // class events
 
         // class functions
-        FUNCTION Reader ();
-        FUNCTION Writer ();
+        static FUNCTION Reader ();
+        static FUNCTION Writer ();
         STRING_FUNCTION ToString ();
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
 
@@ -125,7 +127,35 @@ namespace IMS_Configuration;
         STRING Name[];
     };
 
-     class VTC 
+     class Generic_Device 
+    {
+        // class delegates
+
+        // class events
+
+        // class functions
+        STRING_FUNCTION ToString ();
+        SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+
+        // class variables
+        INTEGER __class_id__;
+
+        // class properties
+        STRING Type[];
+        STRING Name[];
+        STRING ValueName1[];
+        STRING Value1[];
+        STRING ValueName2[];
+        STRING Value2[];
+        STRING ValueName3[];
+        STRING Value3[];
+        STRING ValueName4[];
+        STRING Value4[];
+        SSI_Equipment_Status SSI_Equipment_Status;
+        SSI_Device_Usage SSI_Device_Usage;
+    };
+
+     class Camera 
     {
         // class delegates
 
@@ -140,8 +170,26 @@ namespace IMS_Configuration;
         INTEGER __class_id__;
 
         // class properties
-        STRING Extension[];
         Preset PresetsArray[];
+        SSI_Device_Usage SSI_Device_Usage;
+        SSI_Equipment_Status SSI_Equipment_Status;
+    };
+
+     class VTC 
+    {
+        // class delegates
+
+        // class events
+
+        // class functions
+        STRING_FUNCTION ToString ();
+        SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
+
+        // class variables
+        INTEGER __class_id__;
+
+        // class properties
+        STRING Extension[];
         STRING Help_Number[];
         STRING Help_Button_Text[];
         STRING Connected_Dial_Text[];
@@ -259,7 +307,9 @@ namespace IMS_Configuration;
         // class functions
         FUNCTION DisplaysToArray ();
         FUNCTION PresentationToArray ();
+        FUNCTION CameraToArray ();
         FUNCTION PowerSequencerToArray ();
+        FUNCTION GenericDeviceToArray ();
         STRING_FUNCTION ToString ();
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
 
@@ -280,11 +330,13 @@ namespace IMS_Configuration;
         STRING Microphone_Muted_Not_Text[];
         STRING Presentation_Page_Text[];
         Display DisplayArray[];
+        Camera CameraArray[];
         PresentationInput PresentationInputArray[];
         ATC ATC;
         VTC VTC;
         Lighting Lighting;
         PowerSequencer PowerSequencerArray[];
+        Generic_Device GenericDeviceArray[];
     };
 
      class RESTfulApi 

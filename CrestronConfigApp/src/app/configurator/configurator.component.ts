@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CrestronAPIService } from '../crestron-api.service';
 import { RootConfig, DisplaysEntity, PresentationInputsEntity, ATCEntity, VTCEntity,
           SSIDeviceUsageEntity, SSIDisplayUsageEntity, SSIEquipmentStatusEntity,
-          PowerSequencerEntity, PresetsEntity, LightingIntity } from '../configuration';
+          PowerSequencerEntity, PresetsEntity, LightingEntity,
+          GenericDeviceEntity, CamerasEntity } from '../configuration';
 
 import { FormControl, FormArray, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
@@ -25,11 +26,11 @@ export class ConfiguratorComponent implements OnInit {
   }
 
   get MAXDISPLAYS() {
-    return 4;
+    return 12;
   }
 
   get MAXINPUTS() {
-    return 6;
+    return 12;
   }
 
   get MAXPRESETS() {
@@ -37,14 +38,21 @@ export class ConfiguratorComponent implements OnInit {
   }
 
   get MAXSEQUENCERS() {
-    return 2;
+    return 6;
+  }
+
+  get MAXGENERICDEVICES() {
+    return 12;
   }
 
   isCollapsed: boolean[] = [];
   presentationIsCollapsed: boolean[] = [];
-  VTCPresetsIsCollapsed: boolean[] = [];
+  CameraPresetsIsCollapsed: boolean[][] = [];
+  CamerasIsCollapsed: boolean[] = [];
   LightingPresetsIsCollapsed: boolean[] = [];
   SequencersIsCollapsed: boolean[] = [];
+  GenericDevicesIsCollapsed: boolean[] = [];
+
 
   globalSettingsCollapsed = false;
   displaySettingsCollapsed = true;
@@ -53,6 +61,8 @@ export class ConfiguratorComponent implements OnInit {
   vtcSettingsCollapsed = true;
   lightingSettingsCollapsed = true;
   sequencerSettingsCollapsed = true;
+  genericDevicesSettingCollapsed = true;
+  cameraSettingsCollapsed = true;
 
   slot: number;
 
@@ -67,12 +77,16 @@ export class ConfiguratorComponent implements OnInit {
     return this.configForm.get('Presentation_Inputs') as FormArray;
   }
 
-  get VTCPresets(): FormArray {
-    return this.configForm.get('VTC').get('Presets') as FormArray;
+  get Camera(): FormArray {
+    return this.configForm.get('Camera') as FormArray;
   }
 
   get LightingPresets(): FormArray {
     return this.configForm.get('Lighting').get('Presets') as FormArray;
+  }
+
+  get Generic_Devices(): FormArray {
+    return this.configForm.get('Generic_Device').get('Presets') as FormArray;
   }
 
   constructor(private crestronAPIService: CrestronAPIService, private fb: FormBuilder) {
@@ -115,7 +129,6 @@ export class ConfiguratorComponent implements OnInit {
         Disconnected_Dial_Text: ['', Validators.required ],
         Connected_Hangup_Text: ['', Validators.required ],
         Disconnected_Hangup_Text: ['', Validators.required ],
-        Presets: this.fb.array([]),
         SSI_Device_Usage: this.fb.group({}),
         SSI_Equipment_Status: this.fb.group({})
       }),
@@ -123,7 +136,9 @@ export class ConfiguratorComponent implements OnInit {
         Presets: this.fb.array([]),
         SSI_Equipment_Status: this.fb.group({})
       }),
-      Power_Sequencer: this.fb.array([])
+      Power_Sequencer: this.fb.array([]),
+      Camera: this.fb.array([]),
+      Generic_Device: this.fb.array([])
     });
   }
 
@@ -232,7 +247,41 @@ export class ConfiguratorComponent implements OnInit {
       return this.fb.group(sequencer);
     });
     const sequencerFormArray = this.fb.array(sequencersFGs);
-    this.configForm.setControl('Power_Sequencer', sequencerFormArray);
+    this.configForm.setControl('camera', sequencerFormArray);
+  }
+
+  setCameras(cameras: any) {
+    const camerasFGs = cameras.map(sequencer => {
+      cameras.SSI_Device_Usage = this.fb.group({
+        Device_Name: [ cameras.SSI_Device_Usage.Device_Name, Validators.required],
+        Device_Type: [ cameras.SSI_Device_Usage.Device_Type, Validators.required]
+      });
+      cameras.SSI_Equipment_Status = this.fb.group({
+        Severity_Message: [ cameras.SSI_Equipment_Status.Severity_Message, Validators.required],
+        Error_Text: [ cameras.SSI_Equipment_Status.Error_Text, Validators.required],
+        Ok_Text: [ cameras.SSI_Equipment_Status.Ok_Text, Validators.required]
+      });
+      return this.fb.group(cameras);
+    });
+    const cameraFormArray = this.fb.array(camerasFGs);
+    this.configForm.setControl('camera', cameraFormArray);
+  }
+
+  setGenericDevices(generic_devices: any) {
+    const generic_devicesFGs = generic_devices.map(sequencer => {
+      generic_devices.SSI_Device_Usage = this.fb.group({
+        Device_Name: [ generic_devices.SSI_Device_Usage.Device_Name, Validators.required],
+        Device_Type: [ generic_devices.SSI_Device_Usage.Device_Type, Validators.required]
+      });
+      generic_devices.SSI_Equipment_Status = this.fb.group({
+        Severity_Message: [ generic_devices.SSI_Equipment_Status.Severity_Message, Validators.required],
+        Error_Text: [ generic_devices.SSI_Equipment_Status.Error_Text, Validators.required],
+        Ok_Text: [ generic_devices.SSI_Equipment_Status.Ok_Text, Validators.required]
+      });
+      return this.fb.group(generic_devices);
+    });
+    const generic_devicesFormArray = this.fb.array(generic_devicesFGs);
+    this.configForm.setControl('Generic_Device', generic_devices);
   }
 
   setPresets(model: PresetsEntity[], groupName: string) {
@@ -271,10 +320,10 @@ export class ConfiguratorComponent implements OnInit {
   }
 
   createPresentationInput() {
-    const presentationInput: any =  {
+    const presentationInput: PresentationInputsEntity =  {
       Name: 'New Input',
       Type: 'New Type',
-      Generic_Input_Text: 'Use the controls on the Device for this Input',
+      Generic_Page_Text: 'Use the controls on the Device for this Input',
       Switcher_Value: 99,
       Icon_Value: 99,
       SSI_Device_Usage: this.createSSIDeviceUsage(),
@@ -285,12 +334,12 @@ export class ConfiguratorComponent implements OnInit {
   }
 
   createDisplay() {
-    const displayNew: any =  {
+    const displayNew: DisplaysEntity =  {
       Name: 'New Input',
       Type: 'New Type',
       Switcher_Value: 99,
       Icon_Value: 99,
-      Screen_Enabled: 1,
+      Screen_Enabled: true,
       Warming_Time: 30,
       SSI_Display_Usage: this.createSSIDisplayUsage(),
       SSI_Equipment_Status: this.createSSIEquipmentStatus()
@@ -300,7 +349,7 @@ export class ConfiguratorComponent implements OnInit {
   }
 
   createSequencer() {
-    const sequencerNew: any =  {
+    const sequencerNew: PowerSequencerEntity =  {
       Channel_1_Name: 'Channel 1',
       Channel_2_Name: 'Channel 2',
       Channel_3_Name: 'Channel 3',
@@ -315,18 +364,50 @@ export class ConfiguratorComponent implements OnInit {
     this.Power_Sequencer.push(FG);
   }
 
+  createGenericDevice() {
+    const genericDeviceNew: GenericDeviceEntity =  {
+    Type: 'New Type',
+    Name: 'New Name',
+    ValueName1: 'Value 1 Name',
+    Value1: 'Value 1',
+    ValueName2: 'Value 2 Name',
+    Value2: 'Value 2',
+    ValueName3: 'Value 3 Name',
+    Value3: 'Value 3',
+    ValueName4: 'Value 4 Name',
+    Value4: 'Value 4',
+    SSI_Device_Usage: this.createSSIDeviceUsage(),
+    SSI_Equipment_Status: this.createSSIEquipmentStatus()
+    };
+    const FG = this.fb.group(genericDeviceNew);
+    this.Generic_Devices.push(FG);
+  }
+
+  createCameraDevice() {
+    const cameraNew: CamerasEntity = {
+    Presets : [this.createPreset('cameras')],
+    SSI_Device_Usage: this.createSSIDeviceUsage(),
+    SSI_Equipment_Status: this.createSSIEquipmentStatus()
+    };
+    const FG = this.fb.group(cameraNew);
+    this.CameraPresets.push(FG);
+  }
+
   createPreset(groupName: string) {
-    const presetNew: any =  {
+    const presetNew: PresetsEntity =  {
       Type: 'Preset Type',
       Id: '99',
       Name: 'New Preset'
     };
+    return presetNew;
+    /* Leaving code for future if needed
     const FG = this.fb.group(presetNew);
     console.log(this[groupName]);
     this[groupName].push(FG);
+    */
   }
 
-  createSSIDeviceUsage(): any  {
+  createSSIDeviceUsage(): any {
     const SSIDeviceUsage: SSIDeviceUsageEntity = {
     Device_Type: 'Generic Input',
     Device_Name: 'New Device'
@@ -334,7 +415,7 @@ export class ConfiguratorComponent implements OnInit {
     return this.fb.group(SSIDeviceUsage);
   }
 
-  createSSIDisplayUsage(): any  {
+  createSSIDisplayUsage(): any {
     const SSIDisplayUsage: SSIDisplayUsageEntity = {
     Display_Name: 'New Dislpay'
     };
@@ -357,10 +438,13 @@ export class ConfiguratorComponent implements OnInit {
     this.setSSIEquipmentStatus(this.response.ATC.SSI_Equipment_Status, 'ATC');
     this.setSSIDeviceUsage(this.response.ATC.SSI_Device_Usage, 'VTC');
     this.setSSIEquipmentStatus(this.response.ATC.SSI_Equipment_Status, 'VTC');
-    this.setPresets(this.response.VTC.Presets, 'VTC');
+    // Saving if needed back in
+    // this.setPresets(this.response.VTC.Presets, 'VTC');
     this.setPresets(this.response.Lighting.Presets, 'Lighting');
     this.setSSIEquipmentStatus(this.response.Lighting.SSI_Equipment_Status, 'Lighting');
     this.setSequencers(this.response.Power_Sequencer);
+    this.setGenericDevices(this.response.Generic_Device);
+    this.setCameras(this.response.Cameras);
   }
 
   onSubmit() {
@@ -383,10 +467,18 @@ export class ConfiguratorComponent implements OnInit {
 
     const VTCDeepCopy: VTCEntity = Object.assign({}, formModel.VTC);
 
-    const LightingDeepCopy: LightingIntity = Object.assign({}, formModel.Lighting);
+    const LightingDeepCopy: LightingEntity = Object.assign({}, formModel.Lighting);
 
     const SequencersDeepCopy: PowerSequencerEntity[] = formModel.Power_Sequencer.map(
       (sequencer: DisplaysEntity) => Object.assign({}, sequencer)
+    );
+
+    const GenericDeviceDeepCopy: GenericDeviceEntity[] = formModel.Generic_Device.map(
+      (genericDevice: GenericDeviceEntity) => Object.assign({}, genericDevice)
+    );
+
+    const CameraDeepCopy: CamerasEntity[] = formModel.camera.map(
+      (camera: CamerasEntity) => Object.assign({}, camera)
     );
 
     const saveConfig: RootConfig = {
@@ -407,7 +499,9 @@ export class ConfiguratorComponent implements OnInit {
       ATC: ATCDeepCopy,
       VTC: VTCDeepCopy,
       Lighting: LightingDeepCopy,
-      Power_Sequencer: SequencersDeepCopy
+      Power_Sequencer: SequencersDeepCopy,
+      Cameras: CameraDeepCopy,
+      Generic_Device: GenericDeviceDeepCopy
     };
 
     return saveConfig;
@@ -426,11 +520,21 @@ export class ConfiguratorComponent implements OnInit {
     if (this.presentationIsCollapsed.length > 0) {
       this.presentationIsCollapsed[0] = false;
     }
-    this.response.VTC.Presets.forEach((element, index) => {
-      this.VTCPresetsIsCollapsed.push(true);
+    this.response.Cameras.forEach((element, index) => {
+      element.Presets.forEach((el, i) => {
+        this.CameraPresetsIsCollapsed[index].push(true);
+      });
     });
-    if (this.VTCPresetsIsCollapsed.length > 0) {
-      this.VTCPresetsIsCollapsed[0] = false;
+    if (this.CameraPresetsIsCollapsed.length > 0) {
+      this.CameraPresetsIsCollapsed.forEach((element, index) => {
+        this.CameraPresetsIsCollapsed[index][0] = false;
+      });
+    }
+    this.response.Cameras.forEach((element, index) => {
+      this.CamerasIsCollapsed.push(true);
+    });
+    if (this.CamerasIsCollapsed.length > 0) {
+      this.CamerasIsCollapsed[0] = false;
     }
     this.response.Lighting.Presets.forEach((element, index) => {
       this.LightingPresetsIsCollapsed.push(true);
@@ -443,6 +547,12 @@ export class ConfiguratorComponent implements OnInit {
     });
     if (this.SequencersIsCollapsed.length > 0) {
       this.SequencersIsCollapsed[0] = false;
+    }
+    this.response.Power_Sequencer.forEach((element, index) => {
+      this.SequencersIsCollapsed.push(true);
+    });
+    if (this.GenericDevicesIsCollapsed.length > 0) {
+      this.GenericDevicesIsCollapsed[0] = false;
     }
   }
 
@@ -458,9 +568,17 @@ export class ConfiguratorComponent implements OnInit {
     });
   }
 
-  collapseAllVTCPresets() {
-    this.VTCPresetsIsCollapsed.forEach((element, index) => {
-      this.VTCPresetsIsCollapsed[index] = true;
+  collapseAllCameras() {
+    this.CamerasIsCollapsed.forEach((element, index) => {
+      this.CamerasIsCollapsed[index] = true;
+    });
+  }
+
+  collapseAllCameraPresets() {
+    this.CameraPresetsIsCollapsed.forEach((element, index) => {
+      element.forEach((el, i) => {
+        this.CameraPresetsIsCollapsed[index][i] = true;
+      });
     });
   }
 
@@ -473,6 +591,12 @@ export class ConfiguratorComponent implements OnInit {
   collapseAllSequencers() {
     this.SequencersIsCollapsed.forEach((element, index) => {
       this.SequencersIsCollapsed[index] = true;
+    });
+  }
+
+  collapseAllGenericDevices() {
+    this.GenericDevicesIsCollapsed.forEach((element, index) => {
+      this.GenericDevicesIsCollapsed[index] = true;
     });
   }
 }

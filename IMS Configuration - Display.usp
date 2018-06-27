@@ -48,14 +48,13 @@ Comments:
   DIGITAL, ANALOG and SERIAL INPUTS and OUTPUTS
   (Uncomment and declare inputs and outputs as needed)
 *******************************************************************************************/
-DIGITAL_INPUT Pull_Config, _SKIP_;
-STRING_INPUT FileName$[32];
+DIGITAL_INPUT	Pull_Config;
+DIGITAL_OUTPUT 	Display_Screen_Enabled;
+STRING_OUTPUT 	_SKIP_, Display_Name, Display_Type;
+ANALOG_OUTPUT 	Display_Switcher_Value, Display_Icon_Value, Display_Warming_Time;
+STRING_OUTPUT	Display_SSI_Usage_Name, Display_SSI_Severity_Message, Display_SSI_Error_Text,
+				Display_SSI_OK_Text;
 
-DIGITAL_OUTPUT PulseModules;
-ANALOG_OUTPUT 	Startup_Time, Shutdown_Time_Active, Shutdown_Time_Inactive;
-STRING_OUTPUT 	Room_Name, Welcome_Text, Shutdown_Text, Warming_Text, Cooling_Text;
-DIGITAL_OUTPUT	Microphone_Mute_Enable;
-STRING_OUTPUT	Microphone_Muted_Text, Microphone_Muted_Not_Text, Presentation_Page_Text;
 // BUFFER_INPUT 
 
 /*******************************************************************************************
@@ -70,7 +69,7 @@ STRING_OUTPUT	Microphone_Muted_Text, Microphone_Muted_Not_Text, Presentation_Pag
   Parameters
   (Uncomment and declare parameters as needed)
 *******************************************************************************************/
-// INTEGER_PARAMETER
+INTEGER_PARAMETER Display_Number;
 // SIGNED_INTEGER_PARAMETER
 // LONG_INTEGER_PARAMETER
 // SIGNED_LONG_INTEGER_PARAMETER
@@ -80,18 +79,18 @@ STRING_OUTPUT	Microphone_Muted_Text, Microphone_Muted_Not_Text, Presentation_Pag
   Parameter Properties
   (Uncomment and declare parameter properties as needed)
 *******************************************************************************************/
-/*
-#BEGIN_PARAMETER_PROPERTIES parameter_variable, parameter_variable, ...
-   // propValidUnits = // unitString or unitDecimal|unitHex|unitPercent|unitCharacter|unitTime|unitTicks;
-   // propDefaultUnit = // unitString, unitDecimal, unitHex, unitPercent, unitCharacter, unitTime or unitTicks;
+
+#BEGIN_PARAMETER_PROPERTIES Display_Number
+   propValidUnits = unitDecimal;
+   propDefaultUnit = unitDecimal;
    // propBounds = lower_bound , upper_bound;
-   // propDefaultValue = ;  // or, propDefaultValue = "";
+   propDefaultValue = 0d;
    // propList = // { "value" , "label" } , { "value" , "label" } , ... ;
-   // propShortDescription = "status_bar_hint_text";
+   propShortDescription = "Array Value Starting at 0";
    // #BEGIN_PROP_FULL_DESCRIPTION  line_1...  line_2...  line_n  #END_PROP_FULL_DESCRIPTION
    // #BEGIN_PROP_NOTES line_1...  line_2...  line_n  #END_PROP_NOTES
 #END_PARAMETER_PROPERTIES
-*/
+
 
 /*******************************************************************************************
   Structure Definitions
@@ -117,8 +116,6 @@ MyStruct1 struct;
 // LONG_INTEGER
 // SIGNED_INTEGER
 // SIGNED_LONG_INTEGER
-   STRING filePath[32], programNumber[6];
-   RESTfulApi api;
 /*******************************************************************************************
   Functions
   (Add any additional functions here)
@@ -161,28 +158,21 @@ String_Function MyStrFunction1()
   (Uncomment and declare additional event handlers as needed)
 *******************************************************************************************/
 
-Change FileName$
-{
- 	makestring(filePath, "\\USER\\%d\\%s", GetProgramNumber(), FileName$);
-	Configuration.filePath = filePath;
-}
-
 PUSH Pull_Config
 {
-    Configuration.Reader();
-    PULSE(1, PulseModules);
-	Room_Name = Configuration.Obj.Room_Name;
-	Welcome_Text = Configuration.Obj.Welcome_Text;
-	Shutdown_Text = Configuration.Obj.Shutdown_Text;
-	Startup_Time = Configuration.Obj.Startup_Time;
-	Shutdown_Time_Active = Configuration.Obj.Shutdown_Time_Display_Active;
-	Shutdown_Time_Inactive = Configuration.Obj.Shutdown_Time_Display_Inactive;
-	Warming_Text = Configuration.Obj.Warming_Text;
-	Cooling_Text = Configuration.Obj.Cooling_Text;
-	Microphone_Mute_Enable = Configuration.Obj.Microphone_Mute_Enable;
-	Microphone_Muted_Text = Configuration.Obj.Microphone_Muted_Text;
-	Microphone_Muted_Not_Text = Configuration.Obj.Microphone_Muted_Not_Text;
-	Presentation_Page_Text = Configuration.Obj.Presentation_Page_Text;
+	try{
+	Configuration.Obj.DisplaysToArray();
+	Display_Name = Configuration.Obj.DisplayArray[Display_Number].Name;
+	Display_Type = Configuration.Obj.DisplayArray[Display_Number].Type;
+	Display_Screen_Enabled = Configuration.Obj.DisplayArray[Display_Number].Screen_Enabled;
+	Display_Switcher_Value = Configuration.Obj.DisplayArray[Display_Number].Switcher_Value;
+	Display_Icon_Value = Configuration.Obj.DisplayArray[Display_Number].Icon_Value;
+	Display_Warming_Time = Configuration.Obj.DisplayArray[Display_Number].Warming_Time;
+	Display_SSI_Usage_Name = Configuration.Obj.DisplayArray[Display_Number].SSI_Display_Usage.Display_Name;
+	Display_SSI_Severity_Message = Configuration.Obj.DisplayArray[Display_Number].SSI_Equipment_Status.Severity_Message;
+	Display_SSI_Error_Text = Configuration.Obj.DisplayArray[Display_Number].SSI_Equipment_Status.Error_Text;
+	Display_SSI_OK_Text = Configuration.Obj.DisplayArray[Display_Number].SSI_Equipment_Status.Ok_Text;
+    }catch{};
 }
 
 /*
@@ -237,11 +227,7 @@ Function Main()
     //   the WaitForInitializationComplete statement above and read
     //   them afterwards.  Input/Output variables will not have
     //   their correct values set until after the logic processor
-    //   runs and propagates the values to them.
-	makestring(programNumber, "%d", GetProgramNumber());
-	api.ProgramNumber = programNumber;
-	api.Start();
-	
+    //   runs and propagates the values to them.	
 }
 
 
