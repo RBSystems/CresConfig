@@ -18,7 +18,7 @@ export interface RootConfig {
     ATC: ATCEntity;
     VTC: VTCEntity;
     Power_Sequencer?: (PowerSequencerEntity)[] | null;
-    Lighting: LightingIntity;
+    Lighting: LightingEntity;
   }
 
   export interface DisplaysEntity {
@@ -75,16 +75,17 @@ export interface RootConfig {
     Disconnected_Dial_Text: string;
     Connected_Hangup_Text: string;
     Disconnected_Hangup_Text: string;
-    SSI_Device_Usage: SSIDisplayUsageEntity;
+    SSI_Device_Usage: SSIDeviceUsageEntity;
     SSI_Equipment_Status: SSIEquipmentStatusEntity;
   }
   export interface PresetsEntity {
     Id: string;
     Type: string;
     Name: string;
+    controls?: (any)[] | null;
   }
 
-  export interface LightingIntity {
+  export interface LightingEntity {
     Presets?: (PresetsEntity)[] | null;
     SSI_Equipment_Status: SSIEquipmentStatusEntity;
   }
@@ -102,7 +103,7 @@ export interface RootConfig {
   }
 
   export interface CamerasEntity {
-    Presets?: PresetsEntity[] | null;
+    Presets?: (PresetsEntity)[] | null;
     SSI_Device_Usage: SSIDeviceUsageEntity;
     SSI_Equipment_Status: SSIEquipmentStatusEntity;
   }

@@ -7,9 +7,10 @@
     "Startup_Time": 30,
     "Shutdown_Time_Display_Active": 60,
     "Shutdown_Time_Display_Inactive": 15,
-	"Microphone_Enable": 1,
-	"Microphone_Mute_Text": "Microphone Muted",
-	"Microphone_Mute_Not_Text": "Microphone Not Muted",
+	"Microphone_Mute_Enable": 1,
+	"Microphone_Muted_Text": "Microphone Muted",
+	"Microphone_Muted_Not_Text": "Microphone Not Muted",
+	"Presentation_Page_Text": "Welcome to the Jungle!",
     "Displays": [
         {
             "Name": "Left Projector",
