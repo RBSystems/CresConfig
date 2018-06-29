@@ -49,7 +49,13 @@ Comments:
   (Uncomment and declare inputs and outputs as needed)
 *******************************************************************************************/
 DIGITAL_INPUT	Pull_Config;
-STRING_OUTPUT	Camera_Preset1_ID, Camera_Preset1_Name, Camera_Preset2_ID,
+STRING_INPUT	_SKIP_, Camera_Preset1_Name_In[32], _SKIP_,
+				Camera_Preset2_Name_In[32], _SKIP_,
+				Camera_Preset3_Name_In[32], _SKIP_,
+				Camera_Preset4_Name_In[32], _SKIP_,
+				Camera_Preset5_Name_In[32], _SKIP_,
+				Camera_Preset6_Name_In[32];
+STRING_OUTPUT	_SKIP_, Camera_Preset1_ID, Camera_Preset1_Name, Camera_Preset2_ID,
 				Camera_Preset2_Name, Camera_Preset3_ID, Camera_Preset3_Name,
 				Camera_Preset4_ID, Camera_Preset4_Name, Camera_Preset5_ID,
 				Camera_Preset5_Name, Camera_Preset6_ID, Camera_Preset6_Name,
@@ -122,14 +128,47 @@ MyStruct1 struct;
   Note:  Functions must be physically placed before the location in
          the code that calls them.
 *******************************************************************************************/
-/*
-Function MyFunction1()
-{
-    // TODO:  Add local variable declarations here
 
-    // TODO:  Add code here
+Function PullConfiguration()
+{
+	try{
+	Configuration.Obj.CameraToArray();
+	}catch{};
+
+	try{
+	Configuration.Obj.CameraArray[Camera_Number].PresetToArray();
+	}catch{};
+
+	try{
+	Camera_Preset1_ID = Configuration.Obj.CameraArray[Camera_Number].PresetsArray[0].Id;
+	Camera_Preset1_Name = Configuration.Obj.CameraArray[Camera_Number].PresetsArray[0].Name;
+	}catch{};
+	try{
+	Camera_Preset2_ID = Configuration.Obj.CameraArray[Camera_Number].PresetsArray[1].Id;
+	Camera_Preset2_Name = Configuration.Obj.CameraArray[Camera_Number].PresetsArray[1].Name;
+	}catch{};
+	try{
+	Camera_Preset3_ID = Configuration.Obj.CameraArray[Camera_Number].PresetsArray[2].Id;
+	Camera_Preset3_Name = Configuration.Obj.CameraArray[Camera_Number].PresetsArray[2].Name;
+	}catch{};
+	try{
+	Camera_Preset4_ID = Configuration.Obj.CameraArray[Camera_Number].PresetsArray[3].Id;
+	Camera_Preset4_Name = Configuration.Obj.CameraArray[Camera_Number].PresetsArray[3].Name;
+	}catch{};
+	try{
+	Camera_Preset5_ID = Configuration.Obj.CameraArray[Camera_Number].PresetsArray[4].Id;
+	Camera_Preset5_Name = Configuration.Obj.CameraArray[Camera_Number].PresetsArray[4].Name;
+	}catch{};
+	try{
+	Camera_Preset6_ID = Configuration.Obj.CameraArray[Camera_Number].PresetsArray[5].Id;
+	Camera_Preset6_Name = Configuration.Obj.CameraArray[Camera_Number].PresetsArray[5].Name;
+	}catch{};
+	Camera_SSI_Severity_Message = Configuration.Obj.CameraArray[Camera_Number].SSI_Equipment_Status.Severity_Message;
+	Camera_SSI_Error_Text = Configuration.Obj.CameraArray[Camera_Number].SSI_Equipment_Status.Error_Text;
+	Camera_SSI_Ok_Text = Configuration.Obj.CameraArray[Camera_Number].SSI_Equipment_Status.Ok_Text;
+
 }
-*/
+
 
 /*
 Integer_Function MyIntFunction1()
@@ -160,35 +199,79 @@ String_Function MyStrFunction1()
 
 PUSH Pull_Config
 {
-	Configuration.Obj.CameraArray[Camera_Number].PresetToArray();
-	try{
-	Camera_Preset1_ID = Configuration.Obj.CameraArray[Camera_Number].PresetsArray[0].Id;
-	Camera_Preset1_Name = Configuration.Obj.CameraArray[Camera_Number].PresetsArray[0].Name;
-	}catch{};
-	try{
-	Camera_Preset2_ID = Configuration.Obj.CameraArray[Camera_Number].PresetsArray[1].Id;
-	Camera_Preset2_Name = Configuration.Obj.CameraArray[Camera_Number].PresetsArray[1].Name;
-	}catch{};
-	try{
-	Camera_Preset3_ID = Configuration.Obj.CameraArray[Camera_Number].PresetsArray[2].Id;
-	Camera_Preset3_Name = Configuration.Obj.CameraArray[Camera_Number].PresetsArray[2].Name;
-	}catch{};
-	try{
-	Camera_Preset4_ID = Configuration.Obj.CameraArray[Camera_Number].PresetsArray[3].Id;
-	Camera_Preset4_Name = Configuration.Obj.CameraArray[Camera_Number].PresetsArray[3].Name;
-	}catch{};
-	try{
-	Camera_Preset5_ID = Configuration.Obj.CameraArray[Camera_Number].PresetsArray[4].Id;
-	Camera_Preset5_Name = Configuration.Obj.CameraArray[Camera_Number].PresetsArray[4].Name;
-	}catch{};
-	try{
-	Camera_Preset6_ID = Configuration.Obj.CameraArray[Camera_Number].PresetsArray[5].Id;
-	Camera_Preset6_Name = Configuration.Obj.CameraArray[Camera_Number].PresetsArray[5].Name;
-	}catch{};
-	Camera_SSI_Severity_Message = Configuration.Obj.CameraArray[Camera_Number].SSI_Equipment_Status.Severity_Message;
-	Camera_SSI_Error_Text = Configuration.Obj.CameraArray[Camera_Number].SSI_Equipment_Status.Error_Text;
-	Camera_SSI_Ok_Text = Configuration.Obj.CameraArray[Camera_Number].SSI_Equipment_Status.Ok_Text;
+	PullConfiguration();
+}
 
+Change Camera_Preset1_Name_In
+{
+	if(len(Camera_Preset1_Name_In))
+	{
+	try{
+   	Configuration.Obj.SaveCameraPreset(Camera_Number, 0, Camera_Preset1_Name_In);
+	Configuration.Writer();
+	PullConfiguration();
+	}catch{};
+	}
+}
+
+Change Camera_Preset2_Name_In
+{
+	if(len(Camera_Preset2_Name_In))
+	{
+	try{
+   	Configuration.Obj.SaveCameraPreset(Camera_Number, 1, Camera_Preset2_Name_In);
+	Configuration.Writer();
+	PullConfiguration();
+	}catch{};
+	}
+}
+
+Change Camera_Preset3_Name_In
+{
+	if(len(Camera_Preset3_Name_In))
+	{
+	try{
+   	Configuration.Obj.SaveCameraPreset(Camera_Number, 2, Camera_Preset3_Name_In);
+	Configuration.Writer();
+	PullConfiguration();
+	}catch{};
+	}
+}
+
+Change Camera_Preset4_Name_In
+{
+	if(len(Camera_Preset4_Name_In))
+	{
+	try{
+   	Configuration.Obj.SaveCameraPreset(Camera_Number, 3, Camera_Preset4_Name_In);
+	Configuration.Writer();
+	PullConfiguration();
+	}catch{};
+	}
+}
+
+Change Camera_Preset5_Name_In
+{
+	if(len(Camera_Preset5_Name_In))
+	{
+	try{
+   	Configuration.Obj.SaveCameraPreset(Camera_Number, 4, Camera_Preset5_Name_In);
+	Configuration.Writer();
+	PullConfiguration();
+	}catch{};
+	}
+}
+
+Change Camera_Preset6_Name_In
+{
+	if(len(Camera_Preset6_Name_In))
+	{
+	try{
+   	Configuration.Obj.SaveCameraPreset(Camera_Number, 5, Camera_Preset6_Name_In);
+	Configuration.Writer();
+	PullConfiguration();
+	}catch{};
+	}
 }
 
 /*

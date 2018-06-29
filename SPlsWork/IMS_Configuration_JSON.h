@@ -308,6 +308,7 @@ namespace IMS_Configuration;
         FUNCTION DisplaysToArray ();
         FUNCTION PresentationToArray ();
         FUNCTION CameraToArray ();
+        FUNCTION SaveCameraPreset ( INTEGER index , INTEGER preset , STRING text );
         FUNCTION PowerSequencerToArray ();
         FUNCTION GenericDeviceToArray ();
         STRING_FUNCTION ToString ();

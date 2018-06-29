@@ -23,7 +23,6 @@ namespace IMS_Configuration
                 StreamReader TheFile = new StreamReader(filePath);
                 JsonString = TheFile.ReadToEnd();
                 TheFile.Close();
-                
             }
             else
             {
@@ -34,7 +33,6 @@ namespace IMS_Configuration
             }
 
             Obj = JsonConvert.DeserializeObject<RootObject>(JsonString); //All the heavy lifting
-
         }
 
         public static void Writer()
@@ -229,7 +227,12 @@ namespace IMS_Configuration
         {
             CameraArray = Cameras.ToArray();
         }
-
+        
+        public void SaveCameraPreset(ushort index, ushort preset, string text)
+        {
+            Cameras.ElementAt(index).Presets.ElementAt(preset).Name = text;
+        }
+        
         public void PowerSequencerToArray()
         {
             PowerSequencerArray = Power_Sequencer.ToArray();
