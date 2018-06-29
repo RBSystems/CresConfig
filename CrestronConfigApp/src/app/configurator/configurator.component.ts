@@ -6,7 +6,6 @@ import { RootConfig, DisplaysEntity, PresentationInputsEntity, ATCEntity, VTCEnt
           GenericDeviceEntity, CamerasEntity } from '../configuration';
 
 import { FormControl, FormArray, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ENGINE_METHOD_DIGESTS } from 'constants';
 
 @Component({
   selector: 'app-configurator',
@@ -100,6 +99,7 @@ export class ConfiguratorComponent implements OnInit {
   }
 
   CameraPresets(index: number): FormArray {
+    // @ts-ignore
     return this.Camera.controls[index].controls.Presets as FormArray;
   }
 
@@ -543,6 +543,7 @@ export class ConfiguratorComponent implements OnInit {
     }
     this.r.Cameras.forEach((element, index) => {
       this.CameraPresetsIsCollapsed.push([]);
+      // @ts-ignore: Property'controls' does not existo on type 'AbstractControl'
       element.Presets.controls.forEach((el, i) => {
         this.CameraPresetsIsCollapsed[index].push(true);
       });
