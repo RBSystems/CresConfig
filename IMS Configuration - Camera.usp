@@ -27,6 +27,7 @@ Comments:
 #DEFAULT_VOLATILE
 #ENABLE_STACK_CHECKING
 #ENABLE_TRACE
+// #ANALOG_SERIAL_EXPAND OutputsWithParameters
 // #ENCODING_ASCII
 // #ENCODING_UTF16
 // #ENCODING_INHERIT_FROM_PARENT
@@ -48,13 +49,8 @@ Comments:
   DIGITAL, ANALOG and SERIAL INPUTS and OUTPUTS
   (Uncomment and declare inputs and outputs as needed)
 *******************************************************************************************/
-DIGITAL_INPUT	Pull_Config;
-STRING_INPUT	_SKIP_, Camera_Preset1_Name_In[32], _SKIP_,
-				Camera_Preset2_Name_In[32], _SKIP_,
-				Camera_Preset3_Name_In[32], _SKIP_,
-				Camera_Preset4_Name_In[32], _SKIP_,
-				Camera_Preset5_Name_In[32], _SKIP_,
-				Camera_Preset6_Name_In[32];
+DIGITAL_INPUT	Pull_Config, Save_Camera_Preset;
+STRING_INPUT	_SKIP_, Camera_Preset_Name_In[6][32];
 STRING_OUTPUT	_SKIP_, Camera_Preset1_ID, Camera_Preset1_Name, Camera_Preset2_ID,
 				Camera_Preset2_Name, Camera_Preset3_ID, Camera_Preset3_Name,
 				Camera_Preset4_ID, Camera_Preset4_Name, Camera_Preset5_ID,
@@ -118,7 +114,7 @@ MyStruct1 struct;
   Note:  Be sure to initialize all declared STRING variables as needed
          For example, in Function Main: myString = "";
 *******************************************************************************************/
-// INTEGER
+INTEGER index;
 // LONG_INTEGER
 // SIGNED_INTEGER
 // SIGNED_LONG_INTEGER
@@ -202,76 +198,30 @@ PUSH Pull_Config
 	PullConfiguration();
 }
 
-Change Camera_Preset1_Name_In
+Push Save_Camera_Preset
 {
-	if(len(Camera_Preset1_Name_In))
-	{
 	try{
-   	Configuration.Obj.SaveCameraPreset(Camera_Number, 0, Camera_Preset1_Name_In);
+	Configuration.Obj.SaveCameraPreset(Camera_Number, index - 1, Camera_Preset_Name_In[index]);
 	Configuration.Writer();
-	PullConfiguration();
 	}catch{};
-	}
+	PullConfiguration();
+
 }
 
-Change Camera_Preset2_Name_In
+Change Camera_Preset_Name_In
 {
-	if(len(Camera_Preset2_Name_In))
+	index = getlastmodifiedarrayindex();
+	/*
+	index = getlastmodifiedarrayindex();
+	if(len(Camera_Preset_Name_In[index])
 	{
 	try{
-   	Configuration.Obj.SaveCameraPreset(Camera_Number, 1, Camera_Preset2_Name_In);
+   	Configuration.Obj.SaveCameraPreset(Camera_Number, index - 1, Camera_Preset_Name_In[index]);
 	Configuration.Writer();
 	PullConfiguration();
 	}catch{};
 	}
-}
-
-Change Camera_Preset3_Name_In
-{
-	if(len(Camera_Preset3_Name_In))
-	{
-	try{
-   	Configuration.Obj.SaveCameraPreset(Camera_Number, 2, Camera_Preset3_Name_In);
-	Configuration.Writer();
-	PullConfiguration();
-	}catch{};
-	}
-}
-
-Change Camera_Preset4_Name_In
-{
-	if(len(Camera_Preset4_Name_In))
-	{
-	try{
-   	Configuration.Obj.SaveCameraPreset(Camera_Number, 3, Camera_Preset4_Name_In);
-	Configuration.Writer();
-	PullConfiguration();
-	}catch{};
-	}
-}
-
-Change Camera_Preset5_Name_In
-{
-	if(len(Camera_Preset5_Name_In))
-	{
-	try{
-   	Configuration.Obj.SaveCameraPreset(Camera_Number, 4, Camera_Preset5_Name_In);
-	Configuration.Writer();
-	PullConfiguration();
-	}catch{};
-	}
-}
-
-Change Camera_Preset6_Name_In
-{
-	if(len(Camera_Preset6_Name_In))
-	{
-	try{
-   	Configuration.Obj.SaveCameraPreset(Camera_Number, 5, Camera_Preset6_Name_In);
-	Configuration.Writer();
-	PullConfiguration();
-	}catch{};
-	}
+	*/
 }
 
 /*

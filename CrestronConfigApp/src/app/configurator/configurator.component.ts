@@ -499,8 +499,13 @@ export class ConfiguratorComponent implements OnInit {
     );
 
     const CameraDeepCopy: CamerasEntity[] = formModel.Camera.map(
-      (camera: CamerasEntity) => Object.assign({}, camera)
+      (camera: CamerasEntity) => {
+        // @ts-ignore: Preset Array does not exist on camera
+        delete camera.PresetsArray;
+        return Object.assign({}, camera);
+      }
     );
+    console.log(CameraDeepCopy);
 
     const saveConfig: RootConfig = {
       Room_Name: formModel.Room_Name,

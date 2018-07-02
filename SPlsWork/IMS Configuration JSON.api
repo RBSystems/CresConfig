@@ -1,6 +1,6 @@
 namespace IMS_Configuration;
 {
-     class Configuration 
+    static class Configuration 
     {
         // class delegates
 
@@ -111,7 +111,7 @@ namespace IMS_Configuration;
         STRING Name[];
     };
 
-     class Generic 
+     class Generic_Device 
     {
         // class delegates
 
@@ -125,16 +125,18 @@ namespace IMS_Configuration;
         INTEGER __class_id__;
 
         // class properties
-        STRING Name1[];
+        STRING Type[];
+        STRING Name[];
+        STRING ValueName1[];
         STRING Value1[];
-        STRING Name2[];
+        STRING ValueName2[];
         STRING Value2[];
-        STRING Name3[];
+        STRING ValueName3[];
         STRING Value3[];
-        STRING Name4[];
+        STRING ValueName4[];
         STRING Value4[];
-        STRING Name5[];
-        STRING Value5[];
+        SSI_Equipment_Status SSI_Equipment_Status;
+        SSI_Device_Usage SSI_Device_Usage;
     };
 
      class Camera 
@@ -153,22 +155,8 @@ namespace IMS_Configuration;
 
         // class properties
         Preset PresetsArray[];
-    };
-
-     class GenericArray 
-    {
-        // class delegates
-
-        // class events
-
-        // class functions
-        STRING_FUNCTION ToString ();
-        SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
-
-        // class variables
-        INTEGER __class_id__;
-
-        // class properties
+        SSI_Device_Usage SSI_Device_Usage;
+        SSI_Equipment_Status SSI_Equipment_Status;
     };
 
      class VTC 
@@ -303,7 +291,10 @@ namespace IMS_Configuration;
         // class functions
         FUNCTION DisplaysToArray ();
         FUNCTION PresentationToArray ();
+        FUNCTION CameraToArray ();
+        FUNCTION SaveCameraPreset ( INTEGER index , INTEGER preset , STRING text );
         FUNCTION PowerSequencerToArray ();
+        FUNCTION GenericDeviceToArray ();
         STRING_FUNCTION ToString ();
         SIGNED_LONG_INTEGER_FUNCTION GetHashCode ();
 
@@ -324,11 +315,13 @@ namespace IMS_Configuration;
         STRING Microphone_Muted_Not_Text[];
         STRING Presentation_Page_Text[];
         Display DisplayArray[];
+        Camera CameraArray[];
         PresentationInput PresentationInputArray[];
         ATC ATC;
         VTC VTC;
         Lighting Lighting;
         PowerSequencer PowerSequencerArray[];
+        Generic_Device GenericDeviceArray[];
     };
 
      class RESTfulApi 
