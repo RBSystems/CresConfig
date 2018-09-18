@@ -156,7 +156,7 @@ export class ConfiguratorComponent implements OnInit {
     this.apiIP = window.location.origin;
     this.slot = 0;
     // Uncomment this to use Local
-    this.apiIP = 'http://172.16.121.44';
+    // this.apiIP = 'http://172.16.121.44';
   }
 
   showConfig(slotNumber: number) {
