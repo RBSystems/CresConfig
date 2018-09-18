@@ -104,6 +104,7 @@ export interface RootConfig {
 
   export interface CamerasEntity {
     Presets?: (PresetsEntity)[] | null;
+    Switcher_Value: number;
     SSI_Device_Usage: SSIDeviceUsageEntity;
     SSI_Equipment_Status: SSIEquipmentStatusEntity;
   }

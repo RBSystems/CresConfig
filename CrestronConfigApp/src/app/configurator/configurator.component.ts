@@ -156,7 +156,7 @@ export class ConfiguratorComponent implements OnInit {
     this.apiIP = window.location.origin;
     this.slot = 0;
     // Uncomment this to use Local
-    //this.apiIP = 'http://172.22.0.1';
+    this.apiIP = 'http://172.16.121.44';
   }
 
   showConfig(slotNumber: number) {
@@ -400,6 +400,7 @@ export class ConfiguratorComponent implements OnInit {
 
   createCameraDevice(index: number) {
     const cameraNew: any = {
+    Switcher_Value: 0,
     Presets : this.fb.array([this.createPreset(), this.createPreset(), this.createPreset(), this.createPreset(),
                               this.createPreset(), this.createPreset()]),
     SSI_Device_Usage: this.createSSIDeviceUsage(),

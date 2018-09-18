@@ -680,7 +680,12 @@
                   </div>
             </div>
             <div *ngFor="let camera of Camera.controls; let i=index" [formGroupName]="i">
-                <div [attr.id]="'#cameraField' + i" [ngbCollapse]="CamerasIsCollapsed[i]"> 
+                <div [attr.id]="'#cameraField' + i" [ngbCollapse]="CamerasIsCollapsed[i]">
+                    <div class="form-group column">
+                        <label class="center-block">Switcher Value:
+                          <input class="form-control" formControlName="Switcher_Value">
+                        </label>
+                    </div>
                     <div class="row"><h5>Presets</h5></div>
                     <div class="card-body configForm" *ngIf="CameraPresetsIsCollapsed[i].length > 0">
                         <div formArrayName="Presets">
