@@ -153,10 +153,10 @@ export class ConfiguratorComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.apiIP = window.location.origin;
+    this.apiIP = window.location.origin;
     this.slot = 0;
     // Uncomment this to use Local
-    this.apiIP = 'https://172.25.1.106';
+    //this.apiIP = 'http://172.22.0.1';
   }
 
   showConfig(slotNumber: number) {
