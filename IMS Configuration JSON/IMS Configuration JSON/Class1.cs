@@ -121,7 +121,7 @@ namespace IMS_Configuration
     {
         public List<Preset> Presets { get; set; }
         public Preset[] PresetsArray { get; set; }
-
+        public ushort Switcher_Value { get; set; }
         public void PresetToArray()
         {
             PresetsArray = Presets.ToArray();

@@ -171,6 +171,7 @@ namespace IMS_Configuration;
 
         // class properties
         Preset PresetsArray[];
+        INTEGER Switcher_Value;
         SSI_Device_Usage SSI_Device_Usage;
         SSI_Equipment_Status SSI_Equipment_Status;
     };

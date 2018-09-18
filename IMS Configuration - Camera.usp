@@ -51,6 +51,7 @@ Comments:
 *******************************************************************************************/
 DIGITAL_INPUT	Pull_Config, Save_Camera_Preset;
 STRING_INPUT	_SKIP_, Camera_Preset_Name_In[6][32];
+ANALOG_OUTPUT	_SKIP_, Camera_Switcher_Value;
 STRING_OUTPUT	_SKIP_, Camera_Preset1_ID, Camera_Preset1_Name, Camera_Preset2_ID,
 				Camera_Preset2_Name, Camera_Preset3_ID, Camera_Preset3_Name,
 				Camera_Preset4_ID, Camera_Preset4_Name, Camera_Preset5_ID,
@@ -134,6 +135,10 @@ Function PullConfiguration()
 	try{
 	Configuration.Obj.CameraArray[Camera_Number].PresetToArray();
 	}catch{};
+
+	try{
+	Camera_Switcher_Value = Configuration.Obj.CameraArray[Camera_Number].Switcher_Value;
+    }catch{};
 
 	try{
 	Camera_Preset1_ID = Configuration.Obj.CameraArray[Camera_Number].PresetsArray[0].Id;
