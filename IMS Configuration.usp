@@ -55,7 +55,7 @@ DIGITAL_OUTPUT PulseModules;
 ANALOG_OUTPUT 	Startup_Time, Shutdown_Time_Active, Shutdown_Time_Inactive;
 STRING_OUTPUT 	Room_Name, Welcome_Text, Shutdown_Text, Warming_Text, Cooling_Text;
 DIGITAL_OUTPUT	Microphone_Mute_Enable;
-STRING_OUTPUT	Microphone_Muted_Text, Microphone_Muted_Not_Text, Presentation_Page_Text;
+STRING_OUTPUT	Microphone_Muted_Text, Microphone_Muted_Not_Text, Presentation_Page_Text, Program_Slot;
 // BUFFER_INPUT 
 
 /*******************************************************************************************
@@ -239,6 +239,7 @@ Function Main()
     //   their correct values set until after the logic processor
     //   runs and propagates the values to them.
 	makestring(programNumber, "%d", GetProgramNumber());
+	makestring(Program_Slot, "%s", itoa(GetProgramNumber())); 
 	api.ProgramNumber = programNumber;
 	api.Start();
 	
